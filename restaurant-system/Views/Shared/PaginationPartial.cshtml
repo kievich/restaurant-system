@@ -1,0 +1,32 @@
+﻿@model dynamic
+@{
+    int currentPage = (int)@ViewData.Eval("CurrentPage");
+    int pageCount = (int)@ViewData.Eval("PageCount");
+
+    string previousHref = "#";
+    string nextHref = "#";
+
+    if (currentPage > 1)
+        previousHref = "?page=" + (currentPage - 1).ToString();
+
+    if (pageCount > currentPage)
+        nextHref = "?page=" + (currentPage + 1).ToString();
+
+}
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @if (previousHref != "#")
+        {
+            <li class="page-item"><a class="page-link" href="@previousHref">Previous</a></li>
+        }
+
+        @if (previousHref != "#" || nextHref != "#")
+        {
+            <li class="page-item"><a class="page-link" href="#">@currentPage</a></li>
+        }
+        @if (nextHref != "#")
+        {
+            <li class="page-item"><a class="page-link" href="@nextHref">Next</a></li>
+        }
+    </ul>
+</nav>

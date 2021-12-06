@@ -1,0 +1,37 @@
+﻿<div class="modal fade" id="confirm-add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @{await Html.RenderPartialAsync("CustomersFieldsPartical", new { Prefix = "add" });}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" onclick="add()" id="modal-delete-button" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function add() {
+        $.ajax({
+            type: "POST",
+            url: "AddCustomer",
+            data: {
+                id: EditId,
+                firstname: $("#add-input-firstname").val(),
+                lastname: $("#add-input-lastname").val(),
+                phone: $("#add-input-phone").val()
+            },
+            success: function (data) {
+                document.location.reload();
+            }
+        })
+    }
+
+</script>

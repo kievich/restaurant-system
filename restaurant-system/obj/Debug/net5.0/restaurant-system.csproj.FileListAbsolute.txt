@@ -66,3 +66,9 @@ C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\ref\restaurant-system.dll
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\restaurant-system.pdb
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\restaurant-system.genruntimeconfig.cache
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Customer\Customers.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Shared\PaginationPartial.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Shared\DeleteConfirmPartial.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Customer\CustomersEditPartial.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Customer\CustomersFieldsPartical.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Customer\CustomersAddPartial.cshtml.g.cs

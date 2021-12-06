@@ -1,0 +1,45 @@
+﻿<div class="modal fade" id="confirm-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @{await Html.RenderPartialAsync("CustomersFieldsPartical", new { Prefix = "edit" });}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" onclick="edit()" id="modal-delete-button" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var EditId;
+
+    function SetEditId(id) {
+        EditId = id;
+        $("#edit-input-firstname").val($("#row-" + id).children('td').eq(1).html());
+        $("#edit-input-lastname").val($("#row-" + id).children('td').eq(2).html());
+        $("#edit-input-phone").val($("#row-" + id).children('td').eq(3).html());
+    }
+
+    function edit() {
+        $.ajax({
+            type: "POST",
+            url: "EditCustomer",
+            data: {
+                id: EditId,
+                firstname: $("#edit-input-firstname").val(),
+                lastname: $("#edit-input-lastname").val(),
+                phone: $("#edit-input-phone").val()
+            },
+            success: function (data) {
+                document.location.reload();
+            }
+        })
+    }
+
+</script>
