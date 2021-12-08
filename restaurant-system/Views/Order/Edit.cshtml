@@ -1,0 +1,70 @@
+﻿@Model dynamic
+@{
+    ViewData["Title"] = "Home Page1";
+    Decimal totalPrice = 0M;
+}
+
+<button type="button" class="btn btn-primary" onclick="window.location.href='/Orders'">Back</button>
+<br>
+<h1>
+    Edit Order
+</h1>
+<br>
+@Model.Order.Date
+
+@foreach (var item in Model.OrderDishes)
+{
+    <div class="shadow-sm p-3 mb-5 bg-white rounded">
+        @item.Name
+        @item.Description
+        @item.Price
+    </div>
+    @(totalPrice += item.Price);
+}
+<br>
+<h3>Total Price: @totalPrice</h3>
+
+<br>
+<br>
+<h1>
+    Dishes
+</h1>
+<br>
+@{await Html.RenderPartialAsync("SearchPartial", new { SearchString = ViewBag.DishBag.searchString });}
+<br>
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model.Dishes)
+    {
+        <tbody>
+            <tr id="row-@item.Id">
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td>
+                    <button onclick="SetDishId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-OrderDish">Add</button>
+                </td>
+
+            </tr>
+        </tbody>
+
+    }
+
+</table>
+@*@{await Html.RenderPartialAsync("DishesAddPartial");}
+    @{await Html.RenderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteDish" }); }
+    @{await Html.RenderPartialAsync("DishesEditPartial");}*@
+@{ await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.DishBag.PageCount, CurrentPage = ViewBag.DishBag.CurrentPage, SearchString = ViewBag.DishBag.searchString }); }
+@{ await Html.RenderPartialAsync("AddOrderDishPartial", new { Prefix = "OrderDish", OrderId = Model.Order.Id }); }
+

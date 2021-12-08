@@ -7,20 +7,20 @@
 </h1>
 <br>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Create</button>
+<button type="button" class="btn btn-primary" onclick="window.location.href='CreateOrder'">Create</button>
 <br>
 <br>
 @{await Html.RenderPartialAsync("SearchPartial", new { SearchString = ViewBag.searchString });}
 <br>
+
 <table class="table table-hover">
 
     <thead>
         <tr>
             <th scope="col">№</th>
+            <th scope="col">Date</th>
             <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
-            <th scope="col">Archived</th>
+            <th scope="col">Status</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -33,15 +33,13 @@
                 <td>@item.Name</td>
                 <td>@item.OrderStatus</td>
                 <td>
-                    <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Edit</button>
-                    <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Delete</button>
+                    <button onclick="window.location.href = 'EditOrder/' + @item.Id" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">></button>
                 </td>
 
             </tr>
         </tbody>
     }
 </table>
-
 
 
 @*@{await Html.RenderPartialAsync("DishesAddPartial");}

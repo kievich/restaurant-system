@@ -21,12 +21,17 @@ namespace restaurant_system.Controllers
         }
 
         [Route("Dishes")]
-        public async Task<IActionResult> Dishes(int page = 1, string searchString = "")
+        public IActionResult Dishes(int page = 1, string searchString = "")
+        {
+            return View(GetDishes(page, searchString));
+        }
+
+        public IQueryable<Dish> GetDishes(int page, string searchString)
         {
             if (!String.IsNullOrEmpty(searchString))
             {
                 var searchResult = _db.Dishes.Where(s => s.Name.Contains(searchString)
-                                        || s.Description.Contains(searchString));
+                                       || s.Description.Contains(searchString));
 
                 ViewBag.PageCount = (int)searchResult.Count() / _pageSize + 1;
                 ViewBag.CurrentPage = page;
@@ -36,11 +41,11 @@ namespace restaurant_system.Controllers
                                          .Skip((page - 1) * _pageSize)
                                          .Take(_pageSize);
 
-                return View(await result.ToListAsync());
+                return result;
             }
             else
             {
-                ViewBag.PageCount = (int)_db.Customers.Count() / _pageSize + 1;
+                ViewBag.PageCount = (int)_db.Dishes.Count() / _pageSize + 1;
                 ViewBag.CurrentPage = page;
 
                 var result = _db.Dishes
@@ -49,10 +54,8 @@ namespace restaurant_system.Controllers
                     .Skip((page - 1) * _pageSize)
                     .Take(_pageSize);
 
-                return View(await result.ToListAsync());
+                return result;
             }
-
-
         }
 
         [HttpPost]

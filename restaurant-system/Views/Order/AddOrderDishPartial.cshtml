@@ -1,0 +1,47 @@
+﻿<div class="modal fade" id="confirm-OrderDish" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Dish to Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Number</label>
+                    <input id="@ViewData.Eval("Prefix")-input-number" type="number" step="1" value="1" class="form-control" type="text" placeholder="" aria-label="">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="submit" onclick="AddDishOrder()" id="modal-delete-button" value="Add" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var DishId;
+
+    function SetDishId(id) {
+        DishId = id;
+    }
+
+    function AddDishOrder() {
+        $.ajax({
+            type: "POST",
+            url: "/AddDishOrder",
+            data: {
+                DishId: DishId,
+                OrderId: @ViewData.Eval("OrderId"),
+                Number: $("#OrderDish-input-number").val(),
+            },
+            success: function (data) {
+                document.location.reload();
+            }
+        })
+    }
+
+</script>

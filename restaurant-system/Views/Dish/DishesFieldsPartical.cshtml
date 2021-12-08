@@ -9,7 +9,7 @@
     </div>
     <div class="mb-3">
         <label for="formFile" class="form-label">Price</label>
-        <input id="@ViewData.Eval("Prefix")-input-price" type="number" step="0.01" class="form-control" type="text" placeholder="" aria-label="">
+        <input id="@ViewData.Eval("Prefix")-input-price" type="number" step="0.01" value="0.00" class="form-control" type="text" placeholder="" aria-label="">
     </div>
 
     @if ((string)ViewData.Eval("Prefix") == "edit")

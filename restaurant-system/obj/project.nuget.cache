@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Lhm2bYtT5mPcrp5Ths0LOYzfPXS4A4yhsPOAlAsH3iWYTx2RVSPSKawnwtt2lAj2hh0ImbcufkpzX6xSCMwF3g==",
+  "dgSpecHash": "yIHPzVeOXa9sc7Gq2/2Z9k01rvWPcaEkze6vH9v5gFdi7hZepLfrUirGANvuBaJxZxsEMtRXWKxrREFVFwvmqA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mikhail\\source\\repos\\restaurant-system\\restaurant-system\\restaurant-system.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\Mikhail\\.nuget\\packages\\microsoft.identitymodel.tokens\\5.6.0\\microsoft.identitymodel.tokens.5.6.0.nupkg.sha512",
     "C:\\Users\\Mikhail\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Mikhail\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
+    "C:\\Users\\Mikhail\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.14\\microsoft.visualstudio.azure.containers.tools.targets.1.10.14.nupkg.sha512",
     "C:\\Users\\Mikhail\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Mikhail\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\Mikhail\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
