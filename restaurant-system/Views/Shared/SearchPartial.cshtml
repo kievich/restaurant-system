@@ -1,0 +1,21 @@
+﻿<div class="input-group" style="width: 250px;">
+    <input id="search-input" type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+           aria-describedby="search-addon" value="@ViewData.Eval("SearchString")" />
+    <button onclick="Search()" type="button" class="btn btn-outline-primary">search</button>
+</div>
+
+@if (!String.IsNullOrEmpty((string)ViewData.Eval("SearchString")))
+{
+    <br>
+    <button onClick="(window.location.replace(location.pathname))" type="button" class="btn btn-outline-primary">Reset</button>
+    <br>
+    <br>
+}
+
+<script>
+
+    function Search() {
+        window.location.search = "?searchString=" + $("#search-input").val();
+    }
+
+</script>

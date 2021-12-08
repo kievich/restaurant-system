@@ -72,3 +72,9 @@ C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Customer\CustomersEditPartial.cshtml.g.cs
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Customer\CustomersFieldsPartical.cshtml.g.cs
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Customer\CustomersAddPartial.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Shared\SearchPartial.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Dish\Dishes.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Dish\DishesFieldsPartical.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Dish\DishesAddPartial.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Dish\DishesEditPartial.cshtml.g.cs
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net5.0\Razor\Views\Order\Order.cshtml.g.cs

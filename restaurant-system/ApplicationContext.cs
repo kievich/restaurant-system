@@ -10,6 +10,9 @@ namespace restaurant_system
     public class ApplicationContext : DbContext
     {
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Dish> Dishes { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDish> OrderDishes { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
              : base(options)

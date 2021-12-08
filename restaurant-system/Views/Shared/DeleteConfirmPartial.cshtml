@@ -28,7 +28,7 @@
     function Remove() {
         $.ajax({
             type: "POST",
-            url: "DeleteCustomer",
+            url: "@ViewData.Eval("Action")",
             data: { id: deleteId },
             success: function (data) {
                 document.location.reload();

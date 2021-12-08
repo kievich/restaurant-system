@@ -10,24 +10,23 @@ using System.Threading.Tasks;
 
 namespace restaurant_system.Controllers
 {
-    public class CustomerController : Controller
+    public class OrderController : Controller
     {
         private ApplicationContext _db;
         private int _pageSize = 10;
 
-        public CustomerController(ApplicationContext context)
+        public OrderController(ApplicationContext context)
         {
             _db = context;
         }
 
-        [Route("Customers")]
-        public async Task<IActionResult> Customers(int page = 1, string searchString = "")
+        [Route("Dishes")]
+        public async Task<IActionResult> Orders(int page = 1, string searchString = "")
         {
             if (!String.IsNullOrEmpty(searchString))
             {
-                var searchResult = _db.Customers.Where(s => s.Firstname.Contains(searchString)
-                                        || s.Lastname.Contains(searchString)
-                                        || s.Phone.Contains(searchString));
+                var searchResult = _db.Dishes.Where(s => s.Name.Contains(searchString)
+                                        || s.Description.Contains(searchString));
 
                 ViewBag.PageCount = (int)searchResult.Count() / _pageSize + 1;
                 ViewBag.CurrentPage = page;
@@ -44,7 +43,7 @@ namespace restaurant_system.Controllers
                 ViewBag.PageCount = (int)_db.Customers.Count() / _pageSize + 1;
                 ViewBag.CurrentPage = page;
 
-                var result = _db.Customers
+                var result = _db.Dishes
                     .OrderBy(o => o.Id)
                     .Reverse()
                     .Skip((page - 1) * _pageSize)
@@ -57,39 +56,41 @@ namespace restaurant_system.Controllers
         }
 
         [HttpPost]
-        [Route("AddCustomer")]
-        public void Add(string firstname, string lastname, string phone)
+        [Route("AddOrder")]
+        public void Add(string name, string description, string price)
         {
-            _db.Customers.Add(new Customer()
+            _db.Dishes.Add(new Dish()
             {
-                Firstname = firstname,
-                Lastname = lastname,
-                Phone = phone
+                Name = name,
+                Description = description,
+                Price = Tools.DecimalHelper.Parse(price),
+                Archived = false
             });
 
             _db.SaveChanges();
         }
 
         [HttpPost]
-        [Route("EditCustomer")]
-        public void Edit(int id, string firstname, string lastname, string phone)
+        [Route("EditOrder")]
+        public void Edit(int id, string name, string description, string price, bool archived)
         {
-            _db.Customers.Update(new Customer()
-            {
-                Id = id,
-                Firstname = firstname,
-                Lastname = lastname,
-                Phone = phone
-            });
+            //_db.Dishes.Update(new Dish()
+            //{
+            //    Id = id,
+            //    Name = name,
+            //    Description = description,
+            //    Price = Tools.DecimalHelper.Parse(price),
+            //    Archived = archived
+            //});
 
-            _db.SaveChanges();
+            //_db.SaveChanges();
         }
 
         [HttpPost]
-        [Route("DeleteCustomer")]
+        [Route("DeleteOrder")]
         public void Delete(int id)
         {
-            _db.Customers.Remove(new Customer() { Id = id });
+            _db.Dishes.Remove(new Dish() { Id = id });
             _db.SaveChanges();
         }
     }

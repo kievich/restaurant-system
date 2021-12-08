@@ -1,10 +1,9 @@
-﻿@model IEnumerable<restaurant_system.Models.Customer>
+﻿@model IEnumerable<restaurant_system.Models.Order>
 @{
     ViewData["Title"] = "Home Page1";
-    int pageCount = 1;
 }
 <h1>
-    Customers List
+    Dishes
 </h1>
 <br>
 
@@ -18,9 +17,10 @@
     <thead>
         <tr>
             <th scope="col">№</th>
-            <th scope="col">Firstname</th>
-            <th scope="col">Lastname</th>
-            <th scope="col">Phone</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Archived</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -29,9 +29,9 @@
         <tbody>
             <tr id="row-@item.Id">
                 <td>@item.Id</td>
-                <td>@item.Firstname</td>
-                <td>@item.Lastname</td>
-                <td>@item.Phone</td>
+                <td>@item.Date</td>
+                <td>@item.Name</td>
+                <td>@item.OrderStatus</td>
                 <td>
                     <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Edit</button>
                     <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Delete</button>
@@ -44,7 +44,7 @@
 
 
 
-@{await Html.RenderPartialAsync("CustomersAddPartial");}
-@{await Html.RenderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteCustomer" });}
-@{await Html.RenderPartialAsync("CustomersEditPartial");}
-@{await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.PageCount, CurrentPage = ViewBag.CurrentPage, SearchString = ViewBag.searchString });}
+@*@{await Html.RenderPartialAsync("DishesAddPartial");}
+    @{await Html.RenderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteDish" }); }
+    @{await Html.RenderPartialAsync("DishesEditPartial");}*@
+@{ await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.PageCount, CurrentPage = ViewBag.CurrentPage, SearchString = ViewBag.searchString }); }

@@ -6,27 +6,40 @@
     string previousHref = "#";
     string nextHref = "#";
 
+    string previousStatus = "disabled";
+    string nextStatus = "disabled";
+
     if (currentPage > 1)
+    {
         previousHref = "?page=" + (currentPage - 1).ToString();
+        previousStatus = "";
+    }
 
     if (pageCount > currentPage)
+    {
         nextHref = "?page=" + (currentPage + 1).ToString();
+        nextStatus = "";
+    }
+
+    @if (!String.IsNullOrEmpty((string)ViewData.Eval("SearchString")))
+    {
+        nextHref += "&searchString=" + ViewData.Eval("SearchString");
+        previousHref += "&searchString=" + ViewData.Eval("SearchString");
+    }
 
 }
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        @if (previousHref != "#")
-        {
-            <li class="page-item"><a class="page-link" href="@previousHref">Previous</a></li>
-        }
 
-        @if (previousHref != "#" || nextHref != "#")
-        {
-            <li class="page-item"><a class="page-link" href="#">@currentPage</a></li>
-        }
-        @if (nextHref != "#")
-        {
-            <li class="page-item"><a class="page-link" href="@nextHref">Next</a></li>
-        }
-    </ul>
-</nav>
+@if (nextHref != "#" || previousHref != "#")
+{
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item @previousStatus"><a class="page-link" href="@previousHref">Previous</a></li>
+            <li class="page-item disabled"><a class="page-link" href="#">@currentPage</a></li>
+            <li class="page-item @nextStatus"><a class="page-link" href="@nextHref">Next</a></li>
+
+            <li class="page-item"><a class="btn disabled">&emsp;&emsp;&emsp;Showing @currentPage of @pageCount pages</a></li>
+
+
+        </ul>
+    </nav>
+}
