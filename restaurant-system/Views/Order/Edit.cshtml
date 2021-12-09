@@ -1,10 +1,17 @@
-﻿@Model dynamic
-@{
+﻿@{
     ViewData["Title"] = "Home Page1";
     Decimal totalPrice = 0M;
 }
+<br>
+<div class="d-flex justify-content-between">
 
-<button type="button" class="btn btn-primary" onclick="window.location.href='/Orders'">Back</button>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/Orders'">Back</button>
+    <div>
+        <button type="button" class="btn btn-primary" ">Set Active</button>
+        <button type="button" data-toggle="modal" data-target="#confirm-deleteorder" class="btn btn-danger">Delete</button>
+    </div>
+
+</div>
 <br>
 <h1>
     Edit Order
@@ -14,15 +21,27 @@
 
 @foreach (var item in Model.OrderDishes)
 {
-    <div class="shadow-sm p-3 mb-5 bg-white rounded">
-        @item.Name
-        @item.Description
-        @item.Price
+<div class="d-flex justify-content-between shadow-sm p-3 mb-5 bg-white rounded ">
+    <div>
+        <p> @item.Name</p>
+        <p>    @item.Description</p>
+        <p> Price: @item.Price</p>
     </div>
-    @(totalPrice += item.Price);
+    <div class="d-flex align-items-center">
+        @if (@item.Count > 0)
+        {
+        <button type="button" onclick="ChangeCount(@item.OrderDishId, @(item.Count - 1))" class="btn btn-primary">-</button>
+        }
+        <button type="button" class="btn disabled">@item.Count</button>
+        <button type="button" onclick="ChangeCount(@item.OrderDishId, @(item.Count + 1))" class="btn btn-primary">+</button>
+    </div>
+    <div class="d-flex align-items-center">
+        <button onclick="SetOrderDishId(@item.OrderDishId)" type="button" data-toggle="modal" data-target="#confirm-OrderDish-delete" class="btn btn-primary">Delete</button>
+    </div>
+</div>
 }
 <br>
-<h3>Total Price: @totalPrice</h3>
+<h3>Total Price: @Model.TotalPrice</h3>
 
 <br>
 <br>
@@ -30,7 +49,9 @@
     Dishes
 </h1>
 <br>
-@{await Html.RenderPartialAsync("SearchPartial", new { SearchString = ViewBag.DishBag.searchString });}
+@{
+    await Html.RenderPartialAsync("SearchPartial", new { SearchString = ViewBag.DishBag.searchString });
+}
 <br>
 <table class="table table-hover">
 
@@ -46,25 +67,35 @@
 
     @foreach (var item in Model.Dishes)
     {
-        <tbody>
-            <tr id="row-@item.Id">
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Description</td>
-                <td>@item.Price</td>
-                <td>
-                    <button onclick="SetDishId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-OrderDish">Add</button>
-                </td>
+    <tbody>
+        <tr id="row-@item.Id">
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+            <td>
+                <button onclick="SetDishId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-OrderDish">Add</button>
+            </td>
 
-            </tr>
-        </tbody>
+        </tr>
+    </tbody>
 
     }
 
 </table>
 @*@{await Html.RenderPartialAsync("DishesAddPartial");}
-    @{await Html.RenderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteDish" }); }
-    @{await Html.RenderPartialAsync("DishesEditPartial");}*@
-@{ await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.DishBag.PageCount, CurrentPage = ViewBag.DishBag.CurrentPage, SearchString = ViewBag.DishBag.searchString }); }
-@{ await Html.RenderPartialAsync("AddOrderDishPartial", new { Prefix = "OrderDish", OrderId = Model.Order.Id }); }
+                                                @{await Html.ReRenderPartialAsyncnderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteDish" }); }
+                                                @{await Html.("DishesEditPartial");}*@
+@{
+    await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.DishBag.PageCount, CurrentPage = ViewBag.DishBag.CurrentPage, SearchString = ViewBag.DishBag.searchString });
+}
+@{
+    await Html.RenderPartialAsync("AddOrderDishPartial", new { Prefix = "OrderDish", OrderId = Model.Order.Id });
+}
+@{
+    await Html.RenderPartialAsync("OrderDishActionsPartial");
+}
+@{
+    await Html.RenderPartialAsync("OrderActionsPartial", new { OrderId = Model.Order.Id });
+}
 

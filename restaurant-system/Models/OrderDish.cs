@@ -12,6 +12,7 @@ namespace restaurant_system.Models
         public int Id { get; set; }
         public int DishId { get; set; }
         public int OrderId { get; set; }
+        [Range(0, 100000, ErrorMessage = "Count must be a positive number")]
         public int Count { get; set; }
 
     }

@@ -45,7 +45,8 @@ namespace restaurant_system.Controllers
             }
             else
             {
-                ViewBag.PageCount = (int)_db.Dishes.Count() / _pageSize + 1;
+               int oo = _db.Customers.Count();
+                ViewBag.PageCount = _db.Dishes.Count() / _pageSize + 1;
                 ViewBag.CurrentPage = page;
 
                 var result = _db.Dishes

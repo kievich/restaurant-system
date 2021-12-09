@@ -82,8 +82,21 @@ namespace restaurant_system.Controllers
                                 join od in _db.OrderDishes
                                 on d.Id equals od.DishId
                                 where od.OrderId == id
-                                select d;
-
+                                select new
+                                {
+                                    Id = d.Id,
+                                    Name = d.Name,
+                                    Description = d.Description,
+                                    Price = d.Price,
+                                    Count = od.Count,
+                                    OrderDishId = od.Id
+                                };
+            decimal totalPrice = 0M;
+            foreach (dynamic d in model.OrderDishes)
+            {
+                totalPrice += d.Price * d.Count;
+            }
+            model.TotalPrice = totalPrice;
             model.Dishes = dishController.GetDishes(page, searchString);
             ViewBag.DishBag = dishController.ViewBag;
             return View(model);
@@ -94,12 +107,22 @@ namespace restaurant_system.Controllers
         [Route("DeleteOrder")]
         public void Delete(int id)
         {
-            _db.Dishes.Remove(new Dish() { Id = id });
+            _db.Orders.Remove(new Order() { Id = id });
             _db.SaveChanges();
         }
 
+
         [HttpPost]
-        [Route("DeleteOrder")]
+        [Route("DeleteOrderDish")]
+        public void DeleteDish(int id)
+        {
+            _db.Orders.Remove(new Order() { Id = id });
+            _db.SaveChanges();
+        }
+
+
+        [HttpPost]
+        [Route("AddDishOrder")]
         public void AddDishOrder(int dishId, int orderId, int number)
         {
             _db.OrderDishes.Add(new OrderDish()
@@ -110,6 +133,19 @@ namespace restaurant_system.Controllers
 
             });
             _db.SaveChanges();
+        }
+
+        [HttpPost]
+        [Route("ChangeOrderDishCount")]
+        public void ChangeOrderDishCount(int orderDishId, int count)
+        {
+            var dishOrder = _db.OrderDishes.Where(o => o.Id == orderDishId).FirstOrDefault();
+            dishOrder.Count = count;
+            _db.OrderDishes.Update(dishOrder);
+            if (count >= 0)
+            {
+                _db.SaveChanges();
+            }
         }
     }
 }
