@@ -9,17 +9,17 @@ namespace restaurant_system.Models
 {
     public enum OrderStatus
     {
-        Draft,
-        Active,
-        Сompleted,
-        Сanceled
+        Draft = 0,
+        Active = 1,
+        Сompleted = 2,
+        Сanceled = 3
     }
 
     public class Order
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public OrderStatus OrderStatus { get; set; }
+        public OrderStatus Status { get; set; }
         public DateTime Date { get; set; }
         [NotMapped]
         public int DishCount { get; set; }

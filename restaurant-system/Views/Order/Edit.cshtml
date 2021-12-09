@@ -1,14 +1,22 @@
 ﻿@{
     ViewData["Title"] = "Home Page1";
-    Decimal totalPrice = 0M;
 }
 <br>
 <div class="d-flex justify-content-between">
 
     <button type="button" class="btn btn-primary" onclick="window.location.href='/Orders'">Back</button>
     <div>
-        <button type="button" class="btn btn-primary" ">Set Active</button>
-        <button type="button" data-toggle="modal" data-target="#confirm-deleteorder" class="btn btn-danger">Delete</button>
+        @if (Model.Order.Status == OrderStatus.Draft)
+        {
+            <button type="button" onclick="SetStatus(1)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-success">Activate</button>
+            <button type="button" data-toggle="modal" data-target="#confirm-deleteorder" class="btn btn-danger">Delete</button>
+        }
+        @if (Model.Order.Status == OrderStatus.Active)
+        {
+            <button type="button" onclick="SetStatus(2)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-success">Done</button>
+            <button type="button" onclick="SetStatus(3)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-warning">Cancel</button>
+        }
+
     </div>
 
 </div>
@@ -17,31 +25,38 @@
     Edit Order
 </h1>
 <br>
-@Model.Order.Date
-
+<div class="d-flex justify-content-between shadow-sm p-3 mb-5 bg-white rounded ">
+    <h5>Status: @Model.Order.Status</h5>
+    <h5>Total Price: @Model.TotalPrice</h5>
+    <h5> @Model.Order.Date</h5>
+</div>
+<br>
+<br>
 @foreach (var item in Model.OrderDishes)
 {
-<div class="d-flex justify-content-between shadow-sm p-3 mb-5 bg-white rounded ">
-    <div>
-        <p> @item.Name</p>
-        <p>    @item.Description</p>
-        <p> Price: @item.Price</p>
-    </div>
-    <div class="d-flex align-items-center">
-        @if (@item.Count > 0)
+    <div class="d-flex justify-content-between shadow-sm p-3 mb-5 bg-white rounded ">
+        <div>
+            <p> @item.Name</p>
+            <p>    @item.Description</p>
+            <p> Price: @item.Price</p>
+        </div>
+        @if (Model.Order.Status == OrderStatus.Draft)
         {
-        <button type="button" onclick="ChangeCount(@item.OrderDishId, @(item.Count - 1))" class="btn btn-primary">-</button>
+            <div class="d-flex align-items-center">
+                @if (@item.Count > 0)
+                {
+                    <button type="button" onclick="ChangeCount(@item.OrderDishId, @(item.Count - 1))" class="btn btn-primary">-</button>
+                }
+                <button type="button" class="btn disabled">@item.Count</button>
+                <button type="button" onclick="ChangeCount(@item.OrderDishId, @(item.Count + 1))" class="btn btn-primary">+</button>
+            </div>
+            <div class="d-flex align-items-center">
+                <button onclick="SetOrderDishId(@item.OrderDishId)" type="button" data-toggle="modal" data-target="#confirm-OrderDish-delete" class="btn btn-primary">Delete</button>
+        </div>
         }
-        <button type="button" class="btn disabled">@item.Count</button>
-        <button type="button" onclick="ChangeCount(@item.OrderDishId, @(item.Count + 1))" class="btn btn-primary">+</button>
     </div>
-    <div class="d-flex align-items-center">
-        <button onclick="SetOrderDishId(@item.OrderDishId)" type="button" data-toggle="modal" data-target="#confirm-OrderDish-delete" class="btn btn-primary">Delete</button>
-    </div>
-</div>
 }
 <br>
-<h3>Total Price: @Model.TotalPrice</h3>
 
 <br>
 <br>
@@ -61,31 +76,37 @@
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Price</th>
+            @if (Model.Order.Status == OrderStatus.Draft)
+            {
             <th scope="col"></th>
+            }
         </tr>
     </thead>
 
     @foreach (var item in Model.Dishes)
     {
-    <tbody>
-        <tr id="row-@item.Id">
-            <td>@item.Id</td>
-            <td>@item.Name</td>
-            <td>@item.Description</td>
-            <td>@item.Price</td>
-            <td>
-                <button onclick="SetDishId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-OrderDish">Add</button>
-            </td>
+        <tbody>
+            <tr id="row-@item.Id">
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                @if (Model.Order.Status == OrderStatus.Draft)
+                {
+                <td>
+                  <button onclick="SetDishId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-OrderDish">Add</button>
+                </td>
+                }
 
-        </tr>
-    </tbody>
+            </tr>
+        </tbody>
 
     }
 
 </table>
 @*@{await Html.RenderPartialAsync("DishesAddPartial");}
-                                                @{await Html.ReRenderPartialAsyncnderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteDish" }); }
-                                                @{await Html.("DishesEditPartial");}*@
+    @{await Html.ReRenderPartialAsyncnderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteDish" }); }
+    @{await Html.("DishesEditPartial");}*@
 @{
     await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.DishBag.PageCount, CurrentPage = ViewBag.DishBag.CurrentPage, SearchString = ViewBag.DishBag.searchString });
 }

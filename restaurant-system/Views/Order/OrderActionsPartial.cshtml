@@ -50,8 +50,8 @@
             type: "POST",
             url: "/ChangeOrderStatus",
             data: {
-                OrderId: @ViewData.Eval("OrderId"),
-                Status: Status
+                id: @ViewData.Eval("OrderId"),
+                status: Status
             },
             success: function (data) {
                 document.location.reload();

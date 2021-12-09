@@ -136,6 +136,16 @@ namespace restaurant_system.Controllers
         }
 
         [HttpPost]
+        [Route("ChangeOrderStatus")]
+        public void ChangeStatus(int Id, int status)
+        {
+            var order = _db.Orders.Where(o => o.Id == Id).FirstOrDefault();
+            order.Status = (OrderStatus)status;
+            _db.Orders.Update(order);
+                _db.SaveChanges();
+        }
+
+        [HttpPost]
         [Route("ChangeOrderDishCount")]
         public void ChangeOrderDishCount(int orderDishId, int count)
         {
