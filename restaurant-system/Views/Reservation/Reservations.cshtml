@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Home Page1";
+    int pageCount = 1;
+}
+<h1>
+    Reservations List
+</h1>
+<br>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Create</button>
+<br>
+<br>
+@{
+    await Html.RenderPartialAsync("SearchPartial", new { SearchString = ViewBag.searchString });
+}
+<br>
+
+
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Name</th>
+            <th scope="col">Table №</th>
+            <th scope="col">Table Name</th>
+            <th scope="col">Start</th>
+            <th scope="col">End</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.Reservation)
+    {
+        <tbody>
+            <tr id="row-@item.Id">
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.TableId</td>
+                <td>@item.TableName</td>
+                <td>@item.Start</td>
+                <td>@item.End</td>
+                <td>
+                    <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Edit</button>
+                    <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Delete</button>
+                </td>
+
+            </tr>
+        </tbody>
+    }
+</table>
+
+
+
+@{
+    await Html.RenderPartialAsync("ReservationsAddPartial", new { Tables = Model.Tables });
+}
+@{
+    await Html.RenderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteReservation" });
+}
+@{
+    await Html.RenderPartialAsync("ReservationsEditPartial", new { Tables = Model.Tables });
+}
+@{
+    await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.PageCount, CurrentPage = ViewBag.CurrentPage, SearchString = ViewBag.searchString });
+}

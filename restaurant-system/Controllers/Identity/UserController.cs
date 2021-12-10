@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace restaurant_system.Controllers.Identity
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = UserRoles.Admin)]
     public class UsersController : Controller
     {
         UserManager<User> _userManager;

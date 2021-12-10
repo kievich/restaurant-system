@@ -4,9 +4,11 @@ using restaurant_system.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace restaurant_system.Controllers.Identity
 {
+    [Authorize(Roles = UserRoles.Admin)]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;

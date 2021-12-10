@@ -1,0 +1,18 @@
+﻿<div class="modal-body">
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Name</label>
+        <input id="@ViewData.Eval("Prefix")-input-name" class="form-control" type="text" placeholder="" aria-label="">
+    </div>
+
+    @if ((string)ViewData.Eval("Prefix") == "edit")
+    {
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Archived</label>
+            <select id="@ViewData.Eval("Prefix")-input-archived" class="form-control" aria-label="Default select example">
+                <option value="1">Yes</option>
+                <option value="2">No</option>
+            </select>
+        </div>
+
+    }
+</div>

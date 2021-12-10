@@ -12,28 +12,27 @@ using System.Threading.Tasks;
 namespace restaurant_system.Controllers
 {
     [Authorize(Roles = UserRoles.Manager)]
-    public class DishController : Controller
+    public class TableController : Controller
     {
         private ApplicationContext _db;
         private int _pageSize = 10;
 
-        public DishController(ApplicationContext context)
+        public TableController(ApplicationContext context)
         {
             _db = context;
         }
 
-        [Route("Dishes")]
-        public IActionResult Dishes(int page = 1, string searchString = "")
+        [Route("Tablees")]
+        public IActionResult Tables(int page = 1, string searchString = "")
         {
-            return View(GetDishes(page, searchString, true));
+            return View(GetTables(page, searchString, true));
         }
 
-        public IQueryable<Dish> GetDishes(int page, string searchString, bool includeArchived)
+        public IQueryable<Table> GetTables(int page, string searchString, bool includeArchived)
         {
             if (!String.IsNullOrEmpty(searchString))
             {
-                var searchResult = _db.Dishes.Where(s => s.Name.Contains(searchString)
-                                       || s.Description.Contains(searchString)
+                var searchResult = _db.Tables.Where(s => s.Name.Contains(searchString)
                                        || s.Archived.ToString().Contains(searchString))
                         .Where(s => s.Archived == false || includeArchived);
 
@@ -50,10 +49,10 @@ namespace restaurant_system.Controllers
             else
             {
                 int oo = _db.Customers.Count();
-                ViewBag.PageCount = _db.Dishes.Count() / _pageSize + 1;
+                ViewBag.PageCount = _db.Tables.Count() / _pageSize + 1;
                 ViewBag.CurrentPage = page;
 
-                var result = _db.Dishes
+                var result = _db.Tables
                     .Where(s => s.Archived == false || includeArchived)
                     .OrderBy(o => o.Id)
                     .Reverse()
@@ -65,14 +64,12 @@ namespace restaurant_system.Controllers
         }
 
         [HttpPost]
-        [Route("AddDish")]
-        public void Add(string name, string description, string price)
+        [Route("AddTable")]
+        public void Add(string name)
         {
-            _db.Dishes.Add(new Dish()
+            _db.Tables.Add(new Table()
             {
                 Name = name,
-                Description = description,
-                Price = Tools.DecimalHelper.Parse(price),
                 Archived = false
             });
 
@@ -80,15 +77,13 @@ namespace restaurant_system.Controllers
         }
 
         [HttpPost]
-        [Route("EditDish")]
-        public void Edit(int id, string name, string description, string price, bool archived)
+        [Route("EditTable")]
+        public void Edit(int id, string name, bool archived)
         {
-            _db.Dishes.Update(new Dish()
+            _db.Tables.Update(new Table()
             {
                 Id = id,
                 Name = name,
-                Description = description,
-                Price = Tools.DecimalHelper.Parse(price),
                 Archived = archived
             });
 
@@ -96,10 +91,10 @@ namespace restaurant_system.Controllers
         }
 
         [HttpPost]
-        [Route("DeleteDish")]
+        [Route("DeleteTable")]
         public void Delete(int id)
         {
-            _db.Dishes.Remove(new Dish() { Id = id });
+            _db.Tables.Remove(new Table() { Id = id });
             _db.SaveChanges();
         }
     }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace restaurant_system.Controllers
 {
-    [Authorize(Roles = "Manager")]
+    [Authorize(Roles = UserRoles.Manager)]
     public class CustomerController : Controller
     {
         private ApplicationContext _db;

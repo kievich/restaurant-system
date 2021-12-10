@@ -14,6 +14,9 @@ namespace restaurant_system
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDish> OrderDishes { get; set; }
+        public DbSet<Table> Tables { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
              : base(options)
         {

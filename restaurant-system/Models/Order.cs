@@ -21,10 +21,6 @@ namespace restaurant_system.Models
         public string Name { get; set; }
         public OrderStatus Status { get; set; }
         public DateTime Date { get; set; }
-        [NotMapped]
-        public int DishCount { get; set; }
-        [NotMapped]
-        public int TotalPrice { get; set; }
 
     }
 }

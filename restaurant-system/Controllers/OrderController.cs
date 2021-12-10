@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -12,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace restaurant_system.Controllers
 {
-    [Authorize(Roles = "Waiter")]
+    [Authorize(Roles = UserRoles.Waiter + "," + UserRoles.Cook)]
     public class OrderController : Controller
     {
         private ApplicationContext _db;
         private int _pageSize = 10;
 
-        public OrderController(ApplicationContext context)
+        public OrderController(ApplicationContext context, RoleManager<IdentityRole> roleManager)
         {
             _db = context;
         }
@@ -99,7 +100,7 @@ namespace restaurant_system.Controllers
                 totalPrice += d.Price * d.Count;
             }
             model.TotalPrice = totalPrice;
-            model.Dishes = dishController.GetDishes(page, searchString);
+            model.Dishes = dishController.GetDishes(page, searchString, false);
             ViewBag.DishBag = dishController.ViewBag;
             return View(model);
 
@@ -142,9 +143,35 @@ namespace restaurant_system.Controllers
         public void ChangeStatus(int Id, int status)
         {
             var order = _db.Orders.Where(o => o.Id == Id).FirstOrDefault();
-            order.Status = (OrderStatus)status;
-            _db.Orders.Update(order);
-            _db.SaveChanges();
+            if (CanStatusBeChanged(order.Status, (OrderStatus)status))
+            {
+                order.Status = (OrderStatus)status;
+                _db.Orders.Update(order);
+                _db.SaveChanges();
+            }
+        }
+
+        private bool CanStatusBeChanged(OrderStatus oldStatus, OrderStatus newStatus)
+        {
+            bool CanDraft = false;
+            bool CanActive = User.IsInRole(UserRoles.Waiter) && oldStatus == OrderStatus.Draft;
+            bool CanСompleted = User.IsInRole(UserRoles.Cook) && oldStatus == OrderStatus.Active;
+            bool CanСanceled = User.IsInRole(UserRoles.Cook) && oldStatus == OrderStatus.Active;
+
+            if (newStatus == OrderStatus.Draft)
+                return CanDraft;
+
+            if (newStatus == OrderStatus.Active)
+                return CanActive;
+
+            if (newStatus == OrderStatus.Сompleted)
+                return CanСompleted;
+
+            if (newStatus == OrderStatus.Сanceled)
+                return CanСanceled;
+
+            return false;
+
         }
 
         [HttpPost]
