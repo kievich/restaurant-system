@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using restaurant_system.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace restaurant_system
 {
@@ -22,7 +24,18 @@ namespace restaurant_system
             string connection = Configuration.GetConnectionString("DefaultConnection");
             // добавляем контекст MobileContext в качестве сервиса в приложение
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(connection));
+            options.UseSqlServer(connection));
+
+            services.AddIdentity<User, IdentityRole>(opts =>
+            {
+                opts.Password.RequiredLength = 2;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+            })
+                         .AddEntityFrameworkStores<ApplicationContext>();
+
             services.AddControllersWithViews();
         }
 
@@ -41,6 +54,8 @@ namespace restaurant_system
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
