@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using restaurant_system.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace restaurant_system.Controllers.Identity
 {

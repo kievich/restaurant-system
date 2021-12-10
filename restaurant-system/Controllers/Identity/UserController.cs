@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using restaurant_system.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace restaurant_system.Controllers.Identity
 {
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         UserManager<User> _userManager;
@@ -23,7 +26,7 @@ namespace restaurant_system.Controllers.Identity
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, Year = model.Year };
+                User user = new User { Email = model.Email, UserName = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -47,7 +50,7 @@ namespace restaurant_system.Controllers.Identity
             {
                 return NotFound();
             }
-            EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email, Year = user.Year };
+            EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email };
             return View(model);
         }
 

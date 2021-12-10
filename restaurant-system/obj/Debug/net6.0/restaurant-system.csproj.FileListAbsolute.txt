@@ -111,3 +111,4 @@ C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net6
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net6.0\restaurant-system.pdb
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Debug\net6.0\restaurant-system.genruntimeconfig.cache
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Mikhail.Kiyevich\Documents\Git\restaurant-system\restaurant-system\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

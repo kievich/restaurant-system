@@ -8,109 +8,137 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = restaurant_system
 build_property.RootNamespace = restaurant_system
-build_property.ProjectDir = C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\
+build_property.ProjectDir = C:\Users\Mikhail.Kiyevich\Documents\Git\restaurant-system\restaurant-system\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system
+build_property.MSBuildProjectDirectory = C:\Users\Mikhail.Kiyevich\Documents\Git\restaurant-system\restaurant-system
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Account/Login.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Account/Register.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Customer/Customers.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Customer/Customers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3VzdG9tZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Customer/CustomersAddPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Customer/CustomersAddPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3VzdG9tZXJzQWRkUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Customer/CustomersEditPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Customer/CustomersEditPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3VzdG9tZXJzRWRpdFBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Customer/CustomersFieldsPartical.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Customer/CustomersFieldsPartical.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcQ3VzdG9tZXJzRmllbGRzUGFydGljYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Dish/Dishes.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Dish/Dishes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzaFxEaXNoZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Dish/DishesAddPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Dish/DishesAddPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzaFxEaXNoZXNBZGRQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Dish/DishesEditPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Dish/DishesEditPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzaFxEaXNoZXNFZGl0UGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Dish/DishesFieldsPartical.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Dish/DishesFieldsPartical.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzaFxEaXNoZXNGaWVsZHNQYXJ0aWNhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Home/Index.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Home/Privacy.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Order/AddOrderDishPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Order/AddOrderDishPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcQWRkT3JkZXJEaXNoUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Order/Edit.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Order/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Order/OrderActionsPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Order/OrderActionsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcT3JkZXJBY3Rpb25zUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Order/OrderDishActionsPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Order/OrderDishActionsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcT3JkZXJEaXNoQWN0aW9uc1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Order/Orders.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Order/Orders.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcT3JkZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Shared/DeleteConfirmPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Roles/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Roles/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Roles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Roles/UserList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcVXNlckxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Shared/DeleteConfirmPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXERlbGV0ZUNvbmZpcm1QYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Shared/Error.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Shared/PaginationPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Shared/PaginationPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhZ2luYXRpb25QYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Shared/SearchPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Shared/SearchPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlYXJjaFBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Shared/_Layout.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/_ViewImports.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Users/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Users/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/Users/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Mikhail/source/repos/restaurant-system/restaurant-system/Views/_ViewStart.cshtml]
+[C:/Users/Mikhail.Kiyevich/Documents/Git/restaurant-system/restaurant-system/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using restaurant_system.Models;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace restaurant_system.Controllers
 {
+    [Authorize(Roles = "Waiter")]
     public class OrderController : Controller
     {
         private ApplicationContext _db;
@@ -142,7 +144,7 @@ namespace restaurant_system.Controllers
             var order = _db.Orders.Where(o => o.Id == Id).FirstOrDefault();
             order.Status = (OrderStatus)status;
             _db.Orders.Update(order);
-                _db.SaveChanges();
+            _db.SaveChanges();
         }
 
         [HttpPost]

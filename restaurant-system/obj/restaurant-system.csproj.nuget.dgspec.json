@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mikhail\\source\\repos\\restaurant-system\\restaurant-system\\restaurant-system.csproj": {}
+    "C:\\Users\\Mikhail.Kiyevich\\Documents\\Git\\restaurant-system\\restaurant-system\\restaurant-system.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mikhail\\source\\repos\\restaurant-system\\restaurant-system\\restaurant-system.csproj": {
+    "C:\\Users\\Mikhail.Kiyevich\\Documents\\Git\\restaurant-system\\restaurant-system\\restaurant-system.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mikhail\\source\\repos\\restaurant-system\\restaurant-system\\restaurant-system.csproj",
+        "projectUniqueName": "C:\\Users\\Mikhail.Kiyevich\\Documents\\Git\\restaurant-system\\restaurant-system\\restaurant-system.csproj",
         "projectName": "restaurant-system",
-        "projectPath": "C:\\Users\\Mikhail\\source\\repos\\restaurant-system\\restaurant-system\\restaurant-system.csproj",
-        "packagesPath": "C:\\Users\\Mikhail\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mikhail\\source\\repos\\restaurant-system\\restaurant-system\\obj\\",
+        "projectPath": "C:\\Users\\Mikhail.Kiyevich\\Documents\\Git\\restaurant-system\\restaurant-system\\restaurant-system.csproj",
+        "packagesPath": "C:\\Users\\Mikhail.Kiyevich\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mikhail.Kiyevich\\Documents\\Git\\restaurant-system\\restaurant-system\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mikhail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mikhail.Kiyevich\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

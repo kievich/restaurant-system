@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using restaurant_system.Models;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace restaurant_system.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class CustomerController : Controller
     {
         private ApplicationContext _db;
