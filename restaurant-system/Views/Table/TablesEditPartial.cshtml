@@ -34,8 +34,8 @@
             url: "EditTable",
             data: {
                 id: EditId,
-                name: $("#add-input-name").val(),
-                archived: $("#add-input-archived").val() == 1 ? "True" : "False"
+                name: $("#edit-input-name").val(),
+                archived: $("#edit-input-archived").val() == 1 ? "True" : "False"
             },
             success: function (data) {
                 document.location.reload();

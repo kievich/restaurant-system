@@ -54,3 +54,4 @@ C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Release\ne
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Release\net6.0\ref\restaurant-system.dll
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Release\net6.0\restaurant-system.pdb
 C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Release\net6.0\restaurant-system.genruntimeconfig.cache
+C:\Users\Mikhail\source\repos\restaurant-system\restaurant-system\obj\Release\net6.0\restaurant-system.csproj.AssemblyReference.cache

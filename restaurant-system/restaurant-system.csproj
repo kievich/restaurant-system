@@ -4,7 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>restaurant_system</RootNamespace>
     <UserSecretsId>59881aac-4613-4b34-aa82-a3f1ba7ae5fc</UserSecretsId>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
