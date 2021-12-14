@@ -32,7 +32,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <input type="submit" onclick="DeleteOrder()" id="modal-delete-button" value="Delete" class="btn btn-primary" />
+                <input type="submit" onclick="DeleteOrder()" data-dismiss="modal"> id="modal-delete-button" value="Delete" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -55,6 +55,9 @@
             },
             success: function (data) {
                 document.location.reload();
+            },
+            error: function(data){
+                ShowMessege("@ErrorMesseges.ErrorTitle",JSON.parse(data.responseText).Message);
             }
         })
     }
@@ -62,12 +65,15 @@
         function DeleteOrder() {
         $.ajax({
             type: "POST",
-            url: "/DeleteOrderDish",
+            url: "/DeleteOrder",
             data: {
                 id: @ViewData.Eval("OrderId")
             },
             success: function (data) {
                 document.location.href = "/orders";
+            },
+            error: function(data){
+                ShowMessege("@ErrorMesseges.ErrorTitle",JSON.parse(data.responseText).Message);
             }
         })
     }

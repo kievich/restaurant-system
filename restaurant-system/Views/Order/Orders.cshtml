@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<restaurant_system.Models.Order>
 @{
-    ViewData["Title"] = "Home Page1";
+    ViewData["Title"] = "Orders";
 }
 <h1>
     Dishes
@@ -52,4 +52,5 @@
     @{await Html.RenderPartialAsync("DishesEditPartial");}*@
 @{
     await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.PageCount, CurrentPage = ViewBag.CurrentPage, SearchString = ViewBag.searchString });
+    await Html.RenderPartialAsync("MessegePartial");
 }

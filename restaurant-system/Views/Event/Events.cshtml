@@ -1,0 +1,55 @@
+﻿@model IEnumerable<restaurant_system.Models.Event>
+@{
+    ViewData["Title"] = "Events";
+}
+<h1>
+    Events
+</h1>
+<br>
+
+@if (User.IsInRole(UserRoles.Manager))
+{
+    <button type="button" class="btn btn-primary" onclick="window.location.href='CreateEvent'">Create</button>
+}
+<br>
+<br>
+@{
+    await Html.RenderPartialAsync("SearchPartial", new { SearchString = ViewBag.searchString });
+}
+<br>
+
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr id="row-@item.Id">
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Date</td>
+                <td>
+                    <button onclick="window.location.href = 'EditEvent/' + @item.Id" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">></button>
+                </td>
+
+            </tr>
+        </tbody>
+    }
+</table>
+
+
+@*@{await Html.RenderPartialAsync("DishesAddPartial");}
+    @{await Html.RenderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteDish" }); }
+    @{await Html.RenderPartialAsync("DishesEditPartial");}*@
+@{
+    await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.PageCount, CurrentPage = ViewBag.CurrentPage, SearchString = ViewBag.searchString });
+}

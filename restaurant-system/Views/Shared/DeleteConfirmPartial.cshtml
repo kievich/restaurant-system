@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Сonfirm</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,7 +12,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <input type="submit" onclick="Remove()" id="modal-delete-button" value="Delete" class="btn btn-danger" />
+                <input type="submit" onclick="Remove()" data-dismiss="modal" id="modal-delete-button" value="Delete" class="btn btn-danger" />
             </div>
         </div>
     </div>
@@ -32,6 +32,9 @@
             data: { id: deleteId },
             success: function (data) {
                 document.location.reload();
+            },
+            error: function(data){
+                ShowMessege("@ErrorMesseges.ErrorTitle",JSON.parse(data.responseText).Message);
             }
         })
     }

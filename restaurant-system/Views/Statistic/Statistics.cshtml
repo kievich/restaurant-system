@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Statistics";
+}
+<br>
+<div class="d-flex justify-content-between">
+
+    @{
+        await Html.RenderPartialAsync("StatisticsSearchPartial", new
+        {
+            StartDate = ((DateTime)Model.StartDateTime).ToString("yyyy-MM-ddTHH:mm"),
+            EndDate = ((DateTime)Model.EndDateTime).ToString("yyyy-MM-ddTHH:mm")
+        });
+    }
+
+
+</div>
+<br>
+<h3>Number of Orders: @Model.OrdersCount</h3>
+<br>
+<h3>Average Сheck: @Model.AverageСheck</h3>
+<br>
+<h3>Number of Events: @Model.EventCount</h3>
+
+
+<br>
+
+@{
+    await Html.RenderPartialAsync("MessegePartial");
+}
+
+

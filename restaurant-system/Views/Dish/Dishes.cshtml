@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<restaurant_system.Models.Dish>
 @{
-    ViewData["Title"] = "Home Page1";
+    ViewData["Title"] = "Dishes";
 }
 <h1>
     Dishes
@@ -10,7 +10,9 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Create</button>
 <br>
 <br>
-@{await Html.RenderPartialAsync("SearchPartial", new { SearchString = ViewBag.searchString });}
+@{
+    await Html.RenderPartialAsync("SearchPartial", new { SearchString = ViewBag.searchString });
+}
 <br>
 <table class="table table-hover">
 
@@ -46,7 +48,11 @@
 
 
 
-@{await Html.RenderPartialAsync("DishesAddPartial");}
-@{await Html.RenderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteDish" }); }
-@{await Html.RenderPartialAsync("DishesEditPartial");}
-@{ await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.PageCount, CurrentPage = ViewBag.CurrentPage, SearchString = ViewBag.searchString }); }
+@{
+    await Html.RenderPartialAsync("DishesAddPartial");
+    await Html.RenderPartialAsync("MessegePartial");
+    await Html.RenderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteDish" });
+    await Html.RenderPartialAsync("DishesEditPartial");
+    await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.PageCount, CurrentPage = ViewBag.CurrentPage, SearchString = ViewBag.searchString });
+}
+

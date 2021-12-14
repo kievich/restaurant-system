@@ -96,6 +96,8 @@ namespace restaurant_system.Controllers
         {
             _db.Tables.Remove(new Table() { Id = id });
             _db.SaveChanges();
+
+
         }
     }
 }

@@ -1,0 +1,20 @@
+﻿<script>
+
+    function AddCustomerOrder(id) {
+        $.ajax({
+            type: "POST",
+            url: "/AddCustomerEvent",
+            data: {
+                customerId: id,
+                eventId: @ViewData.Eval("EventId"),
+            },
+            success: function (data) {
+                document.location.reload();
+            },
+            error: function(data){
+                ShowMessege("@ErrorMesseges.ErrorTitle",JSON.parse(data.responseText).Message);
+            }
+        })
+    }
+
+</script>

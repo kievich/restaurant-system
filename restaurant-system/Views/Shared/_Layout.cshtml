@@ -35,6 +35,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Reservations">Reservations</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Events">Events</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Statistic" asp-action="Statistics">Statistics</a>
+                            </li>
                         }
                         @if (User.IsInRole(UserRoles.Waiter) || User.IsInRole(UserRoles.Cook))
                         {

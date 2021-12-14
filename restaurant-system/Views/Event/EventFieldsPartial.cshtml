@@ -1,0 +1,40 @@
+﻿@{
+    var Event = (Event)@ViewData.Eval("Event");
+}
+<div class="modal-body">
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Name</label>
+        <input onfocusout="EditEventField()" id="event-input-name" class="form-control" value="@Event.Name" type="text" placeholder="" aria-label="">
+    </div>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Description</label>
+        <input onfocusout="EditEventField()" id="event-input-description" value="@Event.Description" class="form-control" type="text" placeholder="" aria-label="">
+    </div>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Date</label>
+        <input onfocusout="EditEventField()" id="event-input-date" value="@Event.Date.ToString("yyyy-MM-ddTHH:mm")" class="form-control" type="datetime-local" name="trip-start">
+    </div>
+</div>
+
+<script>
+
+
+     function EditEventField() {
+        $.ajax({
+            type: "POST",
+            url: "/EditEventField",
+            data: {
+                id: @Event.Id,
+                name: $("#event-input-name").val(),
+                description: $("#event-input-description").val(),
+                date: $("#event-input-date").val()
+            },
+            success: function (data) {
+                document.location.reload();
+            },
+            error: function(data){
+                ShowMessege("@ErrorMesseges.ErrorTitle",JSON.parse(data.responseText).Message);
+            }
+        })
+    }
+</script>

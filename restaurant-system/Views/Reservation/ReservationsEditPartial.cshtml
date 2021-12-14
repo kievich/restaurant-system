@@ -23,7 +23,6 @@
 
     function SetEditId(id) {
                 EditId = id;
-                alert(DateToString($("#row-" + id).children('td').eq(4).html()))
         $("#edit-input-name").val($("#row-" + id).children('td').eq(1).html());
         $("#edit-input-tables").val($("#row-" + id).children('td').eq(2).html());
         $("#edit-input-start").val(DateToString($("#row-" + id).children('td').eq(4).html()));
@@ -44,6 +43,9 @@
             },
             success: function (data) {
                 document.location.reload();
+            },
+            error: function(data){
+                ShowMessege("@ErrorMesseges.ErrorTitle",data.responseText);
             }
         })
     }

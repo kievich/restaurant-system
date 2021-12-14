@@ -83,8 +83,8 @@ namespace restaurant_system.Controllers
             model.Order = order;
             model.OrderDishes = from d in _db.Dishes
                                 join od in _db.OrderDishes
-                                on d.Id equals od.DishId
-                                where od.OrderId == id
+                                on d.Id equals od.Dish.Id
+                                where od.Order.Id == id
                                 select new
                                 {
                                     Id = d.Id,
@@ -94,6 +94,7 @@ namespace restaurant_system.Controllers
                                     Count = od.Count,
                                     OrderDishId = od.Id
                                 };
+
             decimal totalPrice = 0M;
             foreach (dynamic d in model.OrderDishes)
             {
@@ -110,6 +111,9 @@ namespace restaurant_system.Controllers
         [Route("DeleteOrder")]
         public void Delete(int id)
         {
+            var orderDishes = _db.OrderDishes.Where(x => x.Order.Id == id);
+            _db.OrderDishes.RemoveRange(orderDishes);
+
             _db.Orders.Remove(new Order() { Id = id });
             _db.SaveChanges();
         }
@@ -119,7 +123,7 @@ namespace restaurant_system.Controllers
         [Route("DeleteOrderDish")]
         public void DeleteDish(int id)
         {
-            _db.Orders.Remove(new Order() { Id = id });
+            _db.OrderDishes.Remove(new OrderDish() { Id = id });
             _db.SaveChanges();
         }
 
@@ -130,8 +134,8 @@ namespace restaurant_system.Controllers
         {
             _db.OrderDishes.Add(new OrderDish()
             {
-                DishId = dishId,
-                OrderId = orderId,
+                Dish = _db.Dishes.Where(d => d.Id == dishId).FirstOrDefault(),
+                Order = _db.Orders.Where(o => o.Id == orderId).FirstOrDefault(),
                 Count = number
 
             });

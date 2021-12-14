@@ -16,7 +16,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <input type="submit" onclick="AddDishOrder()" id="modal-delete-button" value="Add" class="btn btn-primary" />
+                <input type="submit" onclick="AddDishOrder()" data-dismiss="modal" id="modal-delete-button" value="Add" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -40,6 +40,9 @@
             },
             success: function (data) {
                 document.location.reload();
+            },
+            error: function(data){
+                ShowMessege("@ErrorMesseges.ErrorTitle",JSON.parse(data.responseText).Message);
             }
         })
     }

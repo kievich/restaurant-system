@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace restaurant_system.Controllers
 {
@@ -64,17 +65,27 @@ namespace restaurant_system.Controllers
             }
         }
 
+        private void ValidateDish(Dish dish)
+        {
+            if (dish.Price < 0)
+                throw new ValidationException(ErrorMesseges.DishPrice);
+        }
+
         [HttpPost]
         [Route("AddDish")]
         public void Add(string name, string description, string price)
         {
-            _db.Dishes.Add(new Dish()
+            var dish = new Dish()
             {
                 Name = name,
                 Description = description,
                 Price = Tools.DecimalHelper.Parse(price),
                 Archived = false
-            });
+            };
+
+            ValidateDish(dish);
+
+            _db.Dishes.Add(dish);
 
             _db.SaveChanges();
         }
@@ -83,14 +94,17 @@ namespace restaurant_system.Controllers
         [Route("EditDish")]
         public void Edit(int id, string name, string description, string price, bool archived)
         {
-            _db.Dishes.Update(new Dish()
+            var dish = new Dish()
             {
                 Id = id,
                 Name = name,
                 Description = description,
                 Price = Tools.DecimalHelper.Parse(price),
                 Archived = archived
-            });
+            };
+            ValidateDish(dish);
+
+            _db.Dishes.Update(dish);
 
             _db.SaveChanges();
         }
@@ -101,6 +115,8 @@ namespace restaurant_system.Controllers
         {
             _db.Dishes.Remove(new Dish() { Id = id });
             _db.SaveChanges();
+
+
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using restaurant_system.Models;
 using Microsoft.AspNetCore.Identity;
+using restaurant_system.Middleware;
 
 namespace restaurant_system
 {
@@ -50,6 +51,9 @@ namespace restaurant_system
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.ConfigureExceptionHandler();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

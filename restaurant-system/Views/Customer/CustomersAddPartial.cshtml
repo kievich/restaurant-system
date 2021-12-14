@@ -7,10 +7,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @{await Html.RenderPartialAsync("CustomersFieldsPartical", new { Prefix = "add" });}
+            @{
+                await Html.RenderPartialAsync("CustomersFieldsPartical", new { Prefix = "add" });
+            }
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <input type="submit" onclick="add()" id="modal-delete-button" value="Create" class="btn btn-primary" />
+                <input type="submit" onclick="add()" data-dismiss="modal" id="modal-delete-button" value="Create" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -23,13 +25,15 @@
             type: "POST",
             url: "AddCustomer",
             data: {
-                id: EditId,
                 firstname: $("#add-input-firstname").val(),
                 lastname: $("#add-input-lastname").val(),
                 phone: $("#add-input-phone").val()
             },
             success: function (data) {
                 document.location.reload();
+            },
+            error: function(data){
+                ShowMessege("@ErrorMesseges.ErrorTitle",JSON.parse(data.responseText).Message);
             }
         })
     }

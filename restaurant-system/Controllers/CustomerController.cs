@@ -23,7 +23,13 @@ namespace restaurant_system.Controllers
         }
 
         [Route("Customers")]
-        public async Task<IActionResult> Customers(int page = 1, string searchString = "")
+        public IActionResult Customers(int page = 1, string searchString = "")
+        {
+            return View(GetCustomers(page, searchString));
+
+        }
+
+        public IQueryable<Customer> GetCustomers(int page, string searchString)
         {
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -39,7 +45,7 @@ namespace restaurant_system.Controllers
                                          .Skip((page - 1) * _pageSize)
                                          .Take(_pageSize);
 
-                return View(await result.ToListAsync());
+                return result;
             }
             else
             {
@@ -52,10 +58,8 @@ namespace restaurant_system.Controllers
                     .Skip((page - 1) * _pageSize)
                     .Take(_pageSize);
 
-                return View(await result.ToListAsync());
+                return result;
             }
-
-
         }
 
         [HttpPost]

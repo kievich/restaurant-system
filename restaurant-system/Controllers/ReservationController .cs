@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace restaurant_system.Controllers
 {
@@ -32,7 +33,8 @@ namespace restaurant_system.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                var searchResult = _db.Reservations.Where(s => s.Name.Contains(searchString));
+                var searchResult = _db.Reservations.Where(s => s.Name.Contains(searchString) ||
+                                                           s.Table.Name.Contains(searchString));
 
                 ViewBag.PageCount = (int)searchResult.Count() / _pageSize + 1;
                 ViewBag.CurrentPage = page;
@@ -57,15 +59,16 @@ namespace restaurant_system.Controllers
 
             model.Reservation = from t in _db.Tables
                                 join r in result
-                                on t.Id equals r.TableId
+                                on t.Id equals r.Table.Id
                                 select new
                                 {
                                     r.Id,
                                     r.Name,
                                     Start = r.Start.ToString("MM/dd/yyyy HH:mm"),
                                     End = r.End.ToString("MM/dd/yyyy HH:mm"),
-                                    r.TableId,
-                                    TableName = t.Name
+                                    Table = r.Table,
+                                    TableName = t.Name,
+                                    Hours = r.Hours
                                 };
 
             model.Tables = _db.Tables.Where(t => t.Archived == false);
@@ -73,34 +76,65 @@ namespace restaurant_system.Controllers
             return View(model);
         }
 
+        public void ValidateReservation(Reservation reservation)
+        {
+            var maxReservationHours = 1000;
+
+            if (reservation.Hours <= 0)
+                throw new ValidationException(ErrorMesseges.ReservationLessThanNull);
+
+            if (reservation.Hours > maxReservationHours)
+                throw new ValidationException(String.Format(ErrorMesseges.ReservationMaxHour, maxReservationHours));
+
+            var ReservationInnerCount = _db.Reservations
+                                        .Where(r => r.Start < reservation.Start && r.End > reservation.End && r.Table.Id == reservation.Table.Id)
+                                        .Count();
+
+            var ReservationOuterCount = _db.Reservations
+                            .Where(r => r.End > reservation.Start && r.Start < reservation.End && r.Table.Id == reservation.Table.Id)
+                            .Count();
+
+            if (ReservationInnerCount > 0 || ReservationOuterCount > 0)
+                throw new ValidationException(ErrorMesseges.ReservationExists);
+
+        }
+
         [HttpPost]
         [Route("AddReservation")]
-        public void Add(string name, int tableId, string start, string end)
+        public IActionResult Add(string name, int tableId, string start, string end)
         {
-
-            _db.Reservations.Add(new Reservation()
+            var reservation = new Reservation()
             {
                 Name = name,
-                TableId = tableId,
-                Start = DateTime.Parse(start),
-                End = DateTime.Parse(end)
-            });
+                Table = _db.Tables.Where(t => t.Id == tableId).FirstOrDefault(),
+                Start = Tools.DateHelper.Parse(start),
+                End = Tools.DateHelper.Parse(end)
+            };
 
+            ValidateReservation(reservation);
+
+            _db.Reservations.Add(reservation);
             _db.SaveChanges();
+            return Ok();
+
         }
 
         [HttpPost]
         [Route("EditReservation")]
         public void Edit(int id, string name, int tableId, string start, string end)
         {
-            _db.Reservations.Update(new Reservation()
+            var reservation = new Reservation()
             {
                 Id = id,
                 Name = name,
-                TableId = tableId,
+                Table = _db.Tables.Where(t => t.Id == tableId).FirstOrDefault(),
                 Start = DateTime.Parse(start),
                 End = DateTime.Parse(end)
-            });
+            };
+
+            ValidateReservation(reservation);
+
+            _db.Reservations.Update(reservation);
 
             _db.SaveChanges();
         }

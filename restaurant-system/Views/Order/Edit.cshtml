@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page1";
+    ViewData["Title"] = "Edit Order";
 }
 <br>
 <div class="d-flex justify-content-between">
@@ -104,19 +104,12 @@
     }
 
 </table>
-@*@{await Html.RenderPartialAsync("DishesAddPartial");}
-    @{await Html.ReRenderPartialAsyncnderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteDish" }); }
-    @{await Html.("DishesEditPartial");}*@
 @{
     await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.DishBag.PageCount, CurrentPage = ViewBag.DishBag.CurrentPage, SearchString = ViewBag.DishBag.searchString });
-}
-@{
+    await Html.RenderPartialAsync("MessegePartial");
     await Html.RenderPartialAsync("AddOrderDishPartial", new { Prefix = "OrderDish", OrderId = Model.Order.Id });
-}
-@{
     await Html.RenderPartialAsync("OrderDishActionsPartial");
-}
-@{
     await Html.RenderPartialAsync("OrderActionsPartial", new { OrderId = Model.Order.Id });
 }
+
 

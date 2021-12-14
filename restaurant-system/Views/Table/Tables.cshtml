@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<restaurant_system.Models.Table>
 @{
-    ViewData["Title"] = "Home Page1";
+    ViewData["Title"] = "Tables";
 }
 <h1>
     Tables
@@ -46,13 +46,8 @@
 
 @{
     await Html.RenderPartialAsync("TablesAddPartial");
-}
-@{
     await Html.RenderPartialAsync("DeleteConfirmPartial", new { Action = "DeleteTable" });
-}
-@{
     await Html.RenderPartialAsync("TablesEditPartial");
-}
-@{
     await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.PageCount, CurrentPage = ViewBag.CurrentPage, SearchString = ViewBag.searchString });
+    await Html.RenderPartialAsync("MessegePartial");
 }
