@@ -49,7 +49,10 @@ namespace restaurant_system.Controllers
                               where o.Date > startDateTime && o.Date < endDateTime
                               select od;
 
-            model.AverageСheck = Math.Round(orderDishes.Average(o => o.Dish.Price * o.Count), 2);
+            if (orderDishes.Count() != 0)
+                model.AverageСheck = Math.Round(orderDishes.Average(o => o.Dish.Price * o.Count), 2);
+            else
+                model.AverageСheck = 0;
 
             model.EventCount = _db.Events.Where(e => e.Date > startDateTime && e.Date < endDateTime).Count();
             return View(model);

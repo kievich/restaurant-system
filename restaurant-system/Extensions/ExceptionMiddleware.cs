@@ -41,8 +41,8 @@ namespace restaurant_system.Middleware
                 await HandleExceptionAsync(httpContext, new ErrorDetails()
                 {
                     StatusCode = httpContext.Response.StatusCode,
-                    //  Message = ErrorMesseges.Common
-                    Message = ex.Message
+                    Message = ErrorMesseges.Common
+                    //Message = ex.Message
 
                 });
             }

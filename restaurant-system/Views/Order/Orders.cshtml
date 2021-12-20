@@ -3,7 +3,7 @@
     ViewData["Title"] = "Orders";
 }
 <h1>
-    Dishes
+    Orders
 </h1>
 <br>
 
@@ -24,7 +24,6 @@
         <tr>
             <th scope="col">№</th>
             <th scope="col">Date</th>
-            <th scope="col">Name</th>
             <th scope="col">Status</th>
             <th scope="col"></th>
         </tr>
@@ -35,7 +34,6 @@
             <tr id="row-@item.Id">
                 <td>@item.Id</td>
                 <td>@item.Date</td>
-                <td>@item.Name</td>
                 <td>@item.Status</td>
                 <td>
                     <button onclick="window.location.href = 'EditOrder/' + @item.Id" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">></button>

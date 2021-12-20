@@ -132,13 +132,24 @@ namespace restaurant_system.Controllers
         [Route("AddDishOrder")]
         public void AddDishOrder(int dishId, int orderId, int number)
         {
-            _db.OrderDishes.Add(new OrderDish()
-            {
-                Dish = _db.Dishes.Where(d => d.Id == dishId).FirstOrDefault(),
-                Order = _db.Orders.Where(o => o.Id == orderId).FirstOrDefault(),
-                Count = number
+            var orderDish = _db.OrderDishes.Where(od => od.Dish.Id == dishId && od.Order.Id == orderId).FirstOrDefault();
 
-            });
+            if (orderDish != null)
+            {
+                orderDish.Count += number;
+                _db.OrderDishes.Update(orderDish);
+
+            }
+            else
+            {
+                _db.OrderDishes.Add(new OrderDish()
+                {
+                    Dish = _db.Dishes.Where(d => d.Id == dishId).FirstOrDefault(),
+                    Order = _db.Orders.Where(o => o.Id == orderId).FirstOrDefault(),
+                    Count = number
+
+                });
+            }
             _db.SaveChanges();
         }
 
