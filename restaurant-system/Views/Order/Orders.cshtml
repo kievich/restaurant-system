@@ -1,4 +1,5 @@
-﻿@model IEnumerable<restaurant_system.Models.Order>
+﻿@using restaurant_system.Tools
+@model IEnumerable<restaurant_system.Models.Order>
 @{
     ViewData["Title"] = "Orders";
 }
@@ -9,7 +10,10 @@
 
 @if (User.IsInRole(UserRoles.Waiter))
 {
-    <button type="button" class="btn btn-primary" onclick="window.location.href='CreateOrder'">Create</button>
+    @*    <button type="button" class="btn btn-primary" onclick="window.location.href='CreateOrder'">Create</button>
+    *@
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Create</button>
+
 }
 <br>
 <br>
@@ -24,6 +28,7 @@
         <tr>
             <th scope="col">№</th>
             <th scope="col">Date</th>
+            <th scope="col">Cook</th>
             <th scope="col">Status</th>
             <th scope="col"></th>
         </tr>
@@ -34,6 +39,7 @@
             <tr id="row-@item.Id">
                 <td>@item.Id</td>
                 <td>@item.Date</td>
+                <td>@NameHelper.GetNameFromEmail(item.CookName)</td>
                 <td>@item.Status</td>
                 <td>
                     <button onclick="window.location.href = 'EditOrder/' + @item.Id" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">></button>
@@ -51,4 +57,5 @@
 @{
     await Html.RenderPartialAsync("PaginationPartial", new { PageCount = ViewBag.PageCount, CurrentPage = ViewBag.CurrentPage, SearchString = ViewBag.searchString });
     await Html.RenderPartialAsync("MessegePartial");
+    await Html.RenderPartialAsync("OrderAddPartial", new { Tables = ViewBag.Tables });
 }

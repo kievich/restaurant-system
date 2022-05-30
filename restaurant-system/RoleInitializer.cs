@@ -10,7 +10,9 @@ namespace restaurant_system
             string adminEmail = "admin@gmail.com";
             string managerEmail = "manager@gmail.com";
             string waiterEmail = "waiter@gmail.com";
+            string waiter2Email = "waiter2@gmail.com";
             string cookEmail = "cook@gmail.com";
+            string cook2Email = "cook2@gmail.com";
             string password = "123";
 
             if (await roleManager.FindByNameAsync(UserRoles.Admin) == null)
@@ -56,7 +58,16 @@ namespace restaurant_system
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, UserRoles.Waiter);
+                }
+            }
 
+            if (await userManager.FindByNameAsync(waiter2Email) == null)
+            {
+                User user = new User { Email = waiter2Email, UserName = waiter2Email };
+                IdentityResult result = await userManager.CreateAsync(user, password);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, UserRoles.Waiter);
                 }
             }
 
@@ -67,7 +78,16 @@ namespace restaurant_system
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, UserRoles.Cook);
+                }
+            }
 
+            if (await userManager.FindByNameAsync(cook2Email) == null)
+            {
+                User user = new User { Email = cook2Email, UserName = cook2Email };
+                IdentityResult result = await userManager.CreateAsync(user, password);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, UserRoles.Cook);
                 }
             }
 

@@ -18,9 +18,10 @@ namespace restaurant_system.Middleware
         }
         public async Task InvokeAsync(HttpContext httpContext)
         {
+            await _next(httpContext);
             try
             {
-                await _next(httpContext);
+             
             }
             catch (ValidationException ex)
             {
@@ -45,6 +46,7 @@ namespace restaurant_system.Middleware
                     //Message = ex.Message
 
                 });
+                
             }
 
         }

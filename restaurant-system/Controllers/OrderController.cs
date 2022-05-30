@@ -27,44 +27,65 @@ namespace restaurant_system.Controllers
         [Route("Orders")]
         public async Task<IActionResult> Orders(int page = 1, string searchString = "")
         {
+            IQueryable<Order> result;
             if (!String.IsNullOrEmpty(searchString))
             {
-                var searchResult = _db.Orders.Where(s => s.Name.Contains(searchString));
+                var searchResult = _db.Orders.Where(s => s.CookName.Contains(searchString));
 
                 ViewBag.PageCount = (int)searchResult.Count() / _pageSize + 1;
                 ViewBag.CurrentPage = page;
                 ViewBag.searchString = searchString;
-                var result = searchResult.OrderBy(o => o.Id)
+                result = searchResult.OrderBy(o => o.Id)
                                          .Reverse()
                                          .Skip((page - 1) * _pageSize)
                                          .Take(_pageSize);
-
-                return View(await result.ToListAsync());
             }
             else
             {
                 ViewBag.PageCount = (int)_db.Orders.Count() / _pageSize + 1;
                 ViewBag.CurrentPage = page;
 
-                var result = _db.Orders
+                result = _db.Orders
                     .OrderBy(o => o.Id)
                     .Reverse()
                     .Skip((page - 1) * _pageSize)
                     .Take(_pageSize);
-
-                return View(await result.ToListAsync());
             }
 
+            ViewBag.Tables = _db.Tables.Where(t => t.Archived == false);
+            ViewBag.TableName = from t in _db.Tables
+                                join o in _db.Orders
+                                on t.Id equals o.Table.Id
+                                select t.Name;
+
+            if (User.IsInRole(UserRoles.Waiter) && User.IsInRole(UserRoles.Cook) == false)
+            {
+                var filterResult = result.Where(f => f.WaiterName == User.Identity.Name);
+                return View(await filterResult.ToListAsync());
+            }
+
+            if (User.IsInRole(UserRoles.Cook) && User.IsInRole(UserRoles.Waiter) == false)
+            {
+                var filterResult = result.Where(f => f.Status == OrderStatus.Unassigned
+                || f.CookName == User.Identity.Name);
+                return View(await filterResult.ToListAsync());
+            }
+
+            return View(await result.ToListAsync());
 
         }
 
         [Route("CreateOrder")]
-        public RedirectResult Create()
+        public RedirectResult Create(int tableId)
         {
+
             var Order = new Order()
             {
+                Table = _db.Tables.Where(t => t.Id == tableId).FirstOrDefault(),
                 Name = String.Empty,
-                Date = DateTime.Now
+                Date = DateTime.Now,
+                CookName = "",
+                WaiterName = User.Identity.Name
             };
 
             _db.Orders.Add(Order);
@@ -90,6 +111,7 @@ namespace restaurant_system.Controllers
                                     Id = d.Id,
                                     Name = d.Name,
                                     Description = d.Description,
+                                    CookName = od.Order.CookName,
                                     Price = d.Price,
                                     Count = od.Count,
                                     OrderDishId = od.Id
@@ -101,6 +123,13 @@ namespace restaurant_system.Controllers
                 totalPrice += d.Price * d.Count;
             }
             model.TotalPrice = totalPrice;
+
+            model.TableName = (from t in _db.Tables
+                               join o in _db.Orders
+                               on t.Id equals o.Table.Id
+                               where o.Id == id
+                               select t.Name).FirstOrDefault();
+            // model.TableName = order.Table.Id.ToString();
             model.Dishes = dishController.GetDishes(page, searchString, false);
             ViewBag.DishBag = dishController.ViewBag;
             return View(model);
@@ -158,26 +187,39 @@ namespace restaurant_system.Controllers
         public void ChangeStatus(int Id, int status)
         {
             var order = _db.Orders.Where(o => o.Id == Id).FirstOrDefault();
-            if (CanStatusBeChanged(order.Status, (OrderStatus)status))
-            {
-                order.Status = (OrderStatus)status;
-                _db.Orders.Update(order);
-                _db.SaveChanges();
-            }
+            var targetStatus = (OrderStatus)status;
+            if (CanStatusBeChanged(order.Status, (OrderStatus)status) == false)
+                return;
+
+            if (targetStatus == OrderStatus.Assigned)
+                order.CookName = User.Identity.Name;
+
+            if (targetStatus == OrderStatus.Unassigned)
+                order.CookName = "";
+
+            order.Status = targetStatus;
+            _db.Orders.Update(order);
+            _db.SaveChanges();
+
         }
 
         private bool CanStatusBeChanged(OrderStatus oldStatus, OrderStatus newStatus)
         {
             bool CanDraft = false;
-            bool CanActive = User.IsInRole(UserRoles.Waiter) && oldStatus == OrderStatus.Draft;
-            bool CanСompleted = User.IsInRole(UserRoles.Cook) && oldStatus == OrderStatus.Active;
-            bool CanСanceled = User.IsInRole(UserRoles.Cook) && oldStatus == OrderStatus.Active;
+            bool CanUnassigned = User.IsInRole(UserRoles.Waiter) && oldStatus == OrderStatus.Draft
+                || User.IsInRole(UserRoles.Cook) && oldStatus == OrderStatus.Assigned;
+            bool CanAssigned = User.IsInRole(UserRoles.Cook) && oldStatus == OrderStatus.Unassigned;
+            bool CanСompleted = User.IsInRole(UserRoles.Cook) && oldStatus == OrderStatus.Assigned;
+            bool CanСanceled = User.IsInRole(UserRoles.Cook) && oldStatus == OrderStatus.Unassigned;
 
             if (newStatus == OrderStatus.Draft)
                 return CanDraft;
 
-            if (newStatus == OrderStatus.Active)
-                return CanActive;
+            if (newStatus == OrderStatus.Unassigned)
+                return CanUnassigned;
+
+            if (newStatus == OrderStatus.Assigned)
+                return CanAssigned;
 
             if (newStatus == OrderStatus.Сompleted)
                 return CanСompleted;

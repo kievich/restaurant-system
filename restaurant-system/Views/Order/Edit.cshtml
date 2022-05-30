@@ -1,5 +1,7 @@
-﻿@{
+﻿@using restaurant_system.Tools
+@{
     ViewData["Title"] = "Edit Order";
+    var cookName = Model.Order.CookName != "" ? Model.Order.CookName : " - ";
 }
 <br>
 <div class="d-flex justify-content-between">
@@ -11,23 +13,31 @@
             <button type="button" onclick="SetStatus(1)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-success">Activate</button>
             <button type="button" data-toggle="modal" data-target="#confirm-deleteorder" class="btn btn-danger">Delete</button>
         }
-        @if (Model.Order.Status == OrderStatus.Active && User.IsInRole(UserRoles.Cook))
+        @if (Model.Order.Status == OrderStatus.Unassigned && User.IsInRole(UserRoles.Cook))
         {
-            <button type="button" onclick="SetStatus(2)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-success">Done</button>
-            <button type="button" onclick="SetStatus(3)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-warning">Cancel</button>
+            <button type="button" onclick="SetStatus(2)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-success">Взять в обработку</button>
+            <button type="button" onclick="SetStatus(4)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-warning">Cancel</button>
         }
 
+        @if (Model.Order.Status == OrderStatus.Assigned && User.IsInRole(UserRoles.Cook))
+        {
+            <button type="button" onclick="SetStatus(1)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-warning">Отказаться</button>
+            <button type="button" onclick="SetStatus(3)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-success">Заказ готов</button>
+            <button type="button" onclick="SetStatus(4)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-danger">Отменить</button>
+        }
     </div>
 
 </div>
 <br>
 <h1>
-    Order
+    Заказ
 </h1>
 <br>
 <div class="d-flex justify-content-between shadow-sm p-3 mb-5 bg-white rounded ">
-    <h5>Status: @Model.Order.Status</h5>
-    <h5>Total Price: @Model.TotalPrice</h5>
+    <h5>Статус: @Model.Order.Status</h5>
+    <h5>Стол: @Model.TableName</h5>
+    <h5>Повар: @NameHelper.GetNameFromEmail(cookName)</h5>
+    <h5>Итоговая стоимость: @Model.TotalPrice</h5>
     <h5> @Model.Order.Date</h5>
 </div>
 <br>
@@ -37,7 +47,7 @@
     <div class="d-flex justify-content-between shadow-sm p-3 mb-5 bg-white rounded ">
         <div>
             <p> @item.Name</p>
-            <p>    @item.Description</p>
+            <p> @item.Description</p>
             <p> Price: @item.Price</p>
         </div>
         @if (Model.Order.Status == OrderStatus.Draft && User.IsInRole(UserRoles.Waiter))
