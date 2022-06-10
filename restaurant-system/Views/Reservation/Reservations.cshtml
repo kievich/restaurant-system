@@ -1,13 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Reservations";
+    ViewData["Title"] = "Бронирование";
     int pageCount = 1;
 }
 <h1>
-    Reservations List
+    Бронирование
 </h1>
 <br>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Create</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Создать</button>
 <br>
 <br>
 @{
@@ -21,12 +21,12 @@
     <thead>
         <tr>
             <th scope="col">№</th>
-            <th scope="col">Name</th>
-            <th scope="col">Table №</th>
-            <th scope="col">Table Name</th>
-            <th scope="col">Start</th>
-            <th scope="col">End</th>
-            <th scope="col">Hours</th>
+            <th scope="col">Имя</th>
+            <th scope="col">№ стола</th>
+            <th scope="col">Стол</th>
+            <th scope="col">Начало</th>
+            <th scope="col">Конец</th>
+            <th scope="col">Продолжительность (ч)</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -42,8 +42,9 @@
                 <td>@item.End</td>
                 <td>@item.Hours</td>
                 <td>
-                    <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Edit</button>
-                    <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Delete</button>
+                    <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Редактировать</button>
+                    <p height="3px"></p>
+                    <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Удалить</button>
                 </td>
 
             </tr>

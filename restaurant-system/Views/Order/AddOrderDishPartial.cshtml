@@ -2,21 +2,21 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Dish to Order</h5>
+                <h5 class="modal-title">Добавить блюда в заказ</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Number</label>
+                    <label for="formFile" class="form-label">Количество</label>
                     <input id="@ViewData.Eval("Prefix")-input-number" type="number" step="1" value="1" class="form-control" type="text" placeholder="" aria-label="">
                 </div>
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <input type="submit" onclick="AddDishOrder()" data-dismiss="modal" id="modal-delete-button" value="Add" class="btn btn-primary" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <input type="submit" onclick="AddDishOrder()" data-dismiss="modal" id="modal-delete-button" value="Добавить" class="btn btn-primary" />
             </div>
         </div>
     </div>

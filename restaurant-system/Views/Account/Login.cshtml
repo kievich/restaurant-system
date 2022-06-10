@@ -1,9 +1,9 @@
 ﻿@model restaurant_system.Models.LoginViewModel
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Авторизация";
 
 }
-<h2>Login to the application</h2>
+<h2>Авторизация</h2>
 <form method="post" asp-controller="Account" asp-action="Login"
       asp-route-returnUrl="@Model.ReturnUrl">
     <div asp-validation-summary="ModelOnly"></div>
@@ -15,9 +15,9 @@
     <div>
         <label class="form-label" asp-for="Password"></label><br />
         <input class="form-control" style="max-width: 250px" asp-for="Password" />
-        <span  asp-validation-for="Password"></span>
+        <span asp-validation-for="Password"></span>
     </div>
-        <br>
+    <br>
     <div>
         <label class="form-label" asp-for="RememberMe"></label><br />
         <input class="form-check-label" asp-for="RememberMe" />

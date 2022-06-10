@@ -1,6 +1,6 @@
 ﻿<div class="modal-body">
     <div class="mb-3">
-        <label for="formFile" class="form-label">Table</label>
+        <label for="formFile" class="form-label">Стол</label>
         <select id="@ViewData.Eval("Prefix")-input-tables" class="form-control" aria-label="Default select example">
             @foreach (var item in (IQueryable<Table>)ViewData.Eval("Tables"))
             {

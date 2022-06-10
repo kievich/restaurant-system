@@ -1,13 +1,14 @@
-﻿@model IEnumerable<restaurant_system.Models.Dish>
+﻿@using restaurant_system.Tools
+@model IEnumerable<restaurant_system.Models.Dish>
 @{
-    ViewData["Title"] = "Dishes";
+    ViewData["Title"] = "Блюда";
 }
 <h1>
-    Dishes
+    Блюда
 </h1>
 <br>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Create</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Создать</button>
 <br>
 <br>
 @{
@@ -19,11 +20,11 @@
     <thead>
         <tr>
             <th scope="col">№</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
-            <th scope="col">Archived</th>
-            <th scope="col"></th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Архивировано</th>
+            <th min scope="col"></th>
         </tr>
     </thead>
 
@@ -35,10 +36,11 @@
                 <td>@item.Name</td>
                 <td>@item.Description</td>
                 <td>@item.Price</td>
-                <td>@item.Archived</td>
+                <td>@NameHelper.BoolToString(item.Archived)</td>
                 <td>
-                    <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Edit</button>
-                    <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Delete</button>
+                    <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Редактировать</button>
+                    <p height="3px"></p>
+                    <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Удалить</button>
                 </td>
 
             </tr>

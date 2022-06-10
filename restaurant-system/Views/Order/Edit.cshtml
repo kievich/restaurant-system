@@ -1,22 +1,22 @@
 ﻿@using restaurant_system.Tools
 @{
-    ViewData["Title"] = "Edit Order";
+    ViewData["Title"] = "Редактировать заказ";
     var cookName = Model.Order.CookName != "" ? Model.Order.CookName : " - ";
 }
 <br>
 <div class="d-flex justify-content-between">
 
-    <button type="button" class="btn btn-primary" onclick="window.location.href='/Orders'">Back</button>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='/Orders'">Назад</button>
     <div>
         @if (Model.Order.Status == OrderStatus.Draft && User.IsInRole(UserRoles.Waiter))
         {
-            <button type="button" onclick="SetStatus(1)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-success">Activate</button>
-            <button type="button" data-toggle="modal" data-target="#confirm-deleteorder" class="btn btn-danger">Delete</button>
+            <button type="button" onclick="SetStatus(1)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-success">Активировать</button>
+            <button type="button" data-toggle="modal" data-target="#confirm-deleteorder" class="btn btn-danger">Удалить</button>
         }
         @if (Model.Order.Status == OrderStatus.Unassigned && User.IsInRole(UserRoles.Cook))
         {
             <button type="button" onclick="SetStatus(2)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-success">Взять в обработку</button>
-            <button type="button" onclick="SetStatus(4)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-warning">Cancel</button>
+            <button type="button" onclick="SetStatus(4)" data-toggle="modal" data-target="#confirm-changestatus" class="btn btn-warning">Отменить</button>
         }
 
         @if (Model.Order.Status == OrderStatus.Assigned && User.IsInRole(UserRoles.Cook))
@@ -34,7 +34,7 @@
 </h1>
 <br>
 <div class="d-flex justify-content-between shadow-sm p-3 mb-5 bg-white rounded ">
-    <h5>Статус: @Model.Order.Status</h5>
+    <h5>Статус: @NameHelper.OrderStatusToString(Model.Order.Status)</h5>
     <h5>Стол: @Model.TableName</h5>
     <h5>Повар: @NameHelper.GetNameFromEmail(cookName)</h5>
     <h5>Итоговая стоимость: @Model.TotalPrice</h5>
@@ -61,7 +61,7 @@
                 <button type="button" onclick="ChangeCount(@item.OrderDishId, @(item.Count + 1))" class="btn btn-primary">+</button>
             </div>
             <div class="d-flex align-items-center">
-                <button onclick="SetOrderDishId(@item.OrderDishId)" type="button" data-toggle="modal" data-target="#confirm-OrderDish-delete" class="btn btn-primary">Delete</button>
+                <button onclick="SetOrderDishId(@item.OrderDishId)" type="button" data-toggle="modal" data-target="#confirm-OrderDish-delete" class="btn btn-primary">Удалить</button>
             </div>
         }
     </div>
@@ -71,7 +71,7 @@
 <br>
 <br>
 <h1>
-    Dishes
+    Блюда
 </h1>
 <br>
 @{
@@ -83,9 +83,9 @@
     <thead>
         <tr>
             <th scope="col">№</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Цена</th>
             @if (Model.Order.Status == OrderStatus.Draft && User.IsInRole(UserRoles.Waiter))
             {
                 <th scope="col"></th>
@@ -104,7 +104,7 @@
                 @if (Model.Order.Status == OrderStatus.Draft && User.IsInRole(UserRoles.Waiter))
                 {
                     <td>
-                        <button onclick="SetDishId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-OrderDish">Add</button>
+                        <button onclick="SetDishId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-OrderDish">Добавить</button>
                     </td>
                 }
 

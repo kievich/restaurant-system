@@ -1,11 +1,11 @@
 ﻿<div class="modal-body">
     <div class="mb-3">
-        <label for="formFile" class="form-label">Name</label>
+        <label for="formFile" class="form-label">Название</label>
         <input id="@ViewData.Eval("Prefix")-input-name" class="form-control" type="text" placeholder="" aria-label="">
     </div>
 
     <div class="mb-3">
-        <label for="formFile" class="form-label">Table</label>
+        <label for="formFile" class="form-label">Стол</label>
         <select id="@ViewData.Eval("Prefix")-input-tables" class="form-control" aria-label="Default select example">
             @foreach (var item in (IQueryable<Table>)ViewData.Eval("Tables"))
             {
@@ -14,13 +14,13 @@
         </select>
     </div>
     <div class="mb-3">
-        <label for="formFile" class="form-label">Start</label>
-        <input id="@ViewData.Eval("Prefix")-input-start"  class="form-control" type="datetime-local" id="start" name="trip-start"
+        <label for="formFile" class="form-label">Начало</label>
+        <input id="@ViewData.Eval("Prefix")-input-start" class="form-control" type="datetime-local" id="start" name="trip-start"
                value="2018-07-22">
     </div>
     <div class="mb-3">
-        <label for="formFile" class="form-label">End</label>
-        <input id="@ViewData.Eval("Prefix")-input-end"  class="form-control" type="datetime-local" id="start" name="trip-start"
+        <label for="formFile" class="form-label">Конец</label>
+        <input id="@ViewData.Eval("Prefix")-input-end" class="form-control" type="datetime-local" id="start" name="trip-start"
                value="2018-07-22">
     </div>
 </div>

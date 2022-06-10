@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<restaurant_system.Models.Event>
 @{
-    ViewData["Title"] = "Events";
+    ViewData["Title"] = "События";
 }
 <h1>
-    Events
+    События
 </h1>
 <br>
 
 @if (User.IsInRole(UserRoles.Manager))
 {
-    <button type="button" class="btn btn-primary" onclick="window.location.href='CreateEvent'">Create</button>
+    <button type="button" class="btn btn-primary" onclick="window.location.href='CreateEvent'">Создать</button>
 }
 <br>
 <br>
@@ -23,9 +23,9 @@
     <thead>
         <tr>
             <th scope="col">№</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Date</th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Дата</th>
             <th scope="col"></th>
         </tr>
     </thead>

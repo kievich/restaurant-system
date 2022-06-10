@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<restaurant_system.Models.User>
 
-<h2>List of users</h2>
+<h2>Список пользователей</h2>
 <table class="table">
     @foreach (var user in Model)
     {
         <tr>
             <td>@user.Email</td>
             <td>
-                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userid="@user.Id">Access roles</a>
+                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userid="@user.Id">Редактировать</a>
             </td>
         </tr>
     }

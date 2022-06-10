@@ -1,13 +1,14 @@
-﻿@model IEnumerable<restaurant_system.Models.Table>
+﻿@using restaurant_system.Tools
+@model IEnumerable<restaurant_system.Models.Table>
 @{
-    ViewData["Title"] = "Tables";
+    ViewData["Title"] = "Столы";
 }
 <h1>
-    Tables
+    Столы
 </h1>
 <br>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Create</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Создать</button>
 <br>
 <br>
 @{
@@ -19,8 +20,8 @@
     <thead>
         <tr>
             <th scope="col">№</th>
-            <th scope="col">Name</th>
-            <th scope="col">Archived</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Архивировано</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -31,10 +32,10 @@
             <tr id="row-@item.Id">
                 <td>@item.Id</td>
                 <td>@item.Name</td>
-                <td>@item.Archived</td>
+                <td>@NameHelper.BoolToString(item.Archived)</td>
                 <td>
-                    <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Edit</button>
-                    <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Delete</button>
+                    <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Редактировать</button>
+                    <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Удалить</button>
                 </td>
 
             </tr>

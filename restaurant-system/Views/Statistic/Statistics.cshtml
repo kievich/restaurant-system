@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Statistics";
+    ViewData["Title"] = "Статистика";
 }
 <br>
 <div class="d-flex justify-content-between">
@@ -14,15 +14,14 @@
 
 
 </div>
-<br>
-<h3>Number of Orders: @Model.OrdersCount</h3>
-<br>
-<h3>Average Сheck: @Model.AverageСheck</h3>
-<br>
-<h3>Number of Events: @Model.EventCount</h3>
-
-
-<br>
+<center>
+    <br>
+    <h3>Количество заказов: @Model.OrdersCount</h3>
+    <br>
+    <h3>Средний чек: @Model.AverageСheck</h3>
+    <br>
+    <h3>Количество событий: @Model.EventCount</h3>
+</center>
 
 @{
     await Html.RenderPartialAsync("MessegePartial");

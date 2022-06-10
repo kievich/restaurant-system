@@ -1,13 +1,13 @@
 ﻿<div class="mb-3">
-    <label for="formFile" class="form-label">Start Date</label>
+    <label for="formFile" class="form-label">Дата начала</label>
     <input onfocusout="EditEventField()" id="statistic-start-date" value="@ViewData.Eval("StartDate")" class="form-control" type="datetime-local" name="trip-start">
 </div>
 <div class="mb-3">
-    <label for="formFile" class="form-label">End Date</label>
+    <label for="formFile" class="form-label">До</label>
     <input onfocusout="EditEventField()" id="statistic-end-date" value="@ViewData.Eval("EndDate")" class="form-control" type="datetime-local" name="trip-start">
 </div>
 <div class="mb-3">
-    <button type="button" onclick="GetStatistic()" class="btn btn-primary">Search</button>
+    <button type="button" onclick="GetStatistic()" class="btn btn-primary">Выполнить поиск</button>
 </div>
 
 <script>

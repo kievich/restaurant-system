@@ -1,10 +1,10 @@
 ﻿@using restaurant_system.Tools
 @model IEnumerable<restaurant_system.Models.Order>
 @{
-    ViewData["Title"] = "Orders";
+    ViewData["Title"] = "Заказы";
 }
 <h1>
-    Orders
+    Заказы
 </h1>
 <br>
 
@@ -12,7 +12,7 @@
 {
     @*    <button type="button" class="btn btn-primary" onclick="window.location.href='CreateOrder'">Create</button>
     *@
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Create</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Создать</button>
 
 }
 <br>
@@ -27,9 +27,9 @@
     <thead>
         <tr>
             <th scope="col">№</th>
-            <th scope="col">Date</th>
-            <th scope="col">Cook</th>
-            <th scope="col">Status</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Повар</th>
+            <th scope="col">Статус</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -40,7 +40,7 @@
                 <td>@item.Id</td>
                 <td>@item.Date</td>
                 <td>@NameHelper.GetNameFromEmail(item.CookName)</td>
-                <td>@item.Status</td>
+                <td>@NameHelper.OrderStatusToString(item.Status)</td>
                 <td>
                     <button onclick="window.location.href = 'EditOrder/' + @item.Id" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">></button>
                 </td>

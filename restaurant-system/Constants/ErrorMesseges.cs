@@ -2,13 +2,13 @@
 {
     public static class ErrorMesseges
     {
-        public const string ErrorTitle = "Error";
-        public const string Common = "Something went wrong";
-        public const string DishPrice = "Dish price can't be less than 0";
-        public const string ReservationLessThanNull = "The End date less then Start or equals";
-        public const string ReservationMaxHour = "Max Reservation Hours - {0}";
-        public const string ReservationExists = "The reservation on this date and time already exists";
-        public const string EventCustomerExists = "This customer already exists in the event";
+        public const string ErrorTitle = "Ошибка";
+        public const string Common = "Что-то пошло не так";
+        public const string DishPrice = "Цена не может быть меньше нуля";
+        public const string ReservationLessThanNull = "Дата завершения меньше или равна дате начала";
+        public const string ReservationMaxHour = "Максимальная продожительность бронирования - {0}ч";
+        public const string ReservationExists = "Бронирование на эту дату уже существует";
+        public const string EventCustomerExists = "Клиент уже добавлен в событие";
 
     }
 }

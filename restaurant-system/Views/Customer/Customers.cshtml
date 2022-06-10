@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<restaurant_system.Models.Customer>
 @{
-    ViewData["Title"] = "Customers";
+    ViewData["Title"] = "Клиенты";
     int pageCount = 1;
 }
 <h1>
-    Customers
+    Клиенты
 </h1>
 <br>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Create</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm-add">Создать</button>
 <br>
 <br>
 @{
@@ -20,9 +20,9 @@
     <thead>
         <tr>
             <th scope="col">№</th>
-            <th scope="col">Firstname</th>
-            <th scope="col">Lastname</th>
-            <th scope="col">Phone</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Телефон</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -35,8 +35,8 @@
                 <td>@item.Lastname</td>
                 <td>@item.Phone</td>
                 <td>
-                    <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Edit</button>
-                    <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Delete</button>
+                    <button onclick="SetEditId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-edit">Редактировать</button>
+                    <button onclick="SetDeleteId(@item.Id)" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm-delete">Удалить</button>
                 </td>
 
             </tr>

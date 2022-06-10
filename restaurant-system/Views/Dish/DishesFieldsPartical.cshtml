@@ -1,24 +1,24 @@
 ﻿<div class="modal-body">
     <div class="mb-3">
-        <label for="formFile" class="form-label">Name</label>
+        <label for="formFile" class="form-label">Название</label>
         <input id="@ViewData.Eval("Prefix")-input-name" class="form-control" type="text" placeholder="" aria-label="">
     </div>
     <div class="mb-3">
-        <label for="formFile" class="form-label">Description</label>
+        <label for="formFile" class="form-label">Описание</label>
         <input id="@ViewData.Eval("Prefix")-input-description" class="form-control" type="text" placeholder="" aria-label="">
     </div>
     <div class="mb-3">
-        <label for="formFile" class="form-label">Price</label>
+        <label for="formFile" class="form-label">Цена</label>
         <input id="@ViewData.Eval("Prefix")-input-price" type="number" step="0.01" value="0.00" class="form-control" type="text" placeholder="" aria-label="">
     </div>
 
     @if ((string)ViewData.Eval("Prefix") == "edit")
     {
         <div class="mb-3">
-            <label for="formFile" class="form-label">Archived</label>
+            <label for="formFile" class="form-label">Архивировано</label>
             <select id="@ViewData.Eval("Prefix")-input-archived" class="form-control" aria-label="Default select example">
-                <option value="1">Yes</option>
-                <option value="2">No</option>
+                <option value="1">Да</option>
+                <option value="2">Нет</option>
             </select>
         </div>
 

@@ -3,15 +3,15 @@
 }
 <div class="modal-body">
     <div class="mb-3">
-        <label for="formFile" class="form-label">Name</label>
+        <label for="formFile" class="form-label">Название</label>
         <input onfocusout="EditEventField()" id="event-input-name" class="form-control" value="@Event.Name" type="text" placeholder="" aria-label="">
     </div>
     <div class="mb-3">
-        <label for="formFile" class="form-label">Description</label>
+        <label for="formFile" class="form-label">Описание</label>
         <input onfocusout="EditEventField()" id="event-input-description" value="@Event.Description" class="form-control" type="text" placeholder="" aria-label="">
     </div>
     <div class="mb-3">
-        <label for="formFile" class="form-label">Date</label>
+        <label for="formFile" class="form-label">Дата</label>
         <input onfocusout="EditEventField()" id="event-input-date" value="@Event.Date.ToString("yyyy-MM-ddTHH:mm")" class="form-control" type="datetime-local" name="trip-start">
     </div>
 </div>
